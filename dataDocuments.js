@@ -9,7 +9,7 @@ const documents = {
                 {
                     "idFolderDocument": 0,
                     "id": 0,
-                    "title": "Документ 1",
+                    "title": "Документ 1 это первый документ, не сказать что это важно, но все же!",
                     "source": "../pdfPage/PdfHtml/pdfDoc.html",
                     "img": "./img/documentLogo.png",
                     "file": "../../pdfDoc/Перечень_изменений_по_стенду_ИС_Книжная_полка.pdf"
@@ -17,14 +17,14 @@ const documents = {
                 {
                     "idFolderDocument": 0,
                     "id": 1,
-                    "title": "Документ 222222ыыпыупкыукыукпыукыукецукеукеуцк2ртыспукпукпыукпыукыукпыукпыукепыукепкуцвчпрукеке",
+                    "title": "Документ номер допустим 666 а в документе будет лежать какой-то мем или документ но это уже не важно",
                     "source": "../pdfPage/PdfHtml/pdfDoc.html","img": "./img/documentLogo.png",
                     "file": "../../pdfDoc/Копия_Внутреннее_ТЗ_по_нестандартке_МБ_Мануфактура.pdf"
                 },
                 {
                     "idFolderDocument": 0,
                     "id": 2,
-                    "title": "Документ 3",
+                    "title": "Документ номер 4",
                     "source": "../pdfPage/PdfHtml/pdfDoc.html","img": "./img/documentLogo.png",
                     "file": "../../pdfDoc/Копия_Внутреннее_ТЗ_по_нестандартке_МБ_Мануфактура.pdf"
                 },
