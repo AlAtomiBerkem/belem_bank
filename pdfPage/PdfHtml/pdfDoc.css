@@ -78,6 +78,13 @@ body {
     font-family: "Nunito", sans-serif;
     margin-right: 25px;
 }
+
+.header-title__conteiner {
+    width: fit-content;  
+    overflow: hidden;  
+    margin-top: 30px;  
+    
+}
 .header-title {
     margin-top: 30px;
     color: #FFFFFF;
@@ -88,7 +95,26 @@ body {
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     font-family: "Nunito", sans-serif;
+    white-space: nowrap;
+
 }
+
+ 
+.header-title {
+    animation: marquee 7s linear infinite alternate;  
+    padding: 20px;  
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-32%);
+    }
+}
+
+
 .exit {
     margin: 45px 0 0 0;
     display: flex;
