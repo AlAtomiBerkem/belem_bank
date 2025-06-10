@@ -1,14 +1,5 @@
  let closeLoading = false;
-// setTimeout(() => {
-//     document.querySelector('.gifLoading').style.opacity = 0;
-//     setTimeout(() => {
-//         console.log(1);
-//         document.querySelector('.gifLoading').style.display = "none"; // Полностью скрываем
-//         document.querySelector('.info').style.opacity = 1;
-//         document.querySelector('.info').style.display = 'block';
-//     }, 250);
-//     closeLoading = true;
-// },3000)
+ 
 console.log(data)
 const para = document.createElement("span");
 const node = document.createTextNode(`${data.title}`);
@@ -29,11 +20,11 @@ document.querySelector('.exit').addEventListener('click', e => {
     console.log(e.target.href)
     console.log(10)
     setTimeout(() => {
-        window.location.href = e.target.href; // Переход на новую страницу
+        window.location.href = e.target.href;  
     }, 500);
 }) 
 
-let inactivityTime = 180000; // 3 минуты (в миллисекундах)
+let inactivityTime = 180000; 
 let timeout;
 
 function resetTimer() {
@@ -43,21 +34,12 @@ function resetTimer() {
     }, inactivityTime);
 }
 
-// Запуск таймера при загрузке страницы
 document.addEventListener("DOMContentLoaded", resetTimer);
 console.log('инициализируем скролл');
-// Сброс таймера при взаимодействии пользователя (нажатия, движения, скроллы)
-["click", "mousemove", "keypress", "touchstart", "scroll"].forEach(event => {
+ ["click", "mousemove", "keypress", "touchstart", "scroll"].forEach(event => {
     console.log(2)
     document.addEventListener(event, resetTimer);
     console.log(document.element('scroll'))
 });
 
 document.addEventListener('contextmenu', event => event.preventDefault());
-    // if(closeLoading) {
-    //     setTimeout(() => {
-    //         console.log(1)
-    //         document.querySelector('.gifLoading').style.display = 'none';
-    //         closeLoading = true;
-    //     },200)
-    // }
