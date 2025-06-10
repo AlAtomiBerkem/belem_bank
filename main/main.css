@@ -1,172 +1,172 @@
 * {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 /* @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap'); */
 body {
-  background-image: url(./img/BackgroundWhite.png);
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+    background-image: url(./img/BackgroundWhite.png);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 html,
 body {
-  width: 1920px;
-  height: 1080px;
-  overflow-x: hidden; /* Отключает горизонтальную прокрутку */
-  touch-action: pan-y; /* Разрешает только вертикальную прокрутку */
-  max-width: 100vw; /* Ограничивает ширину вьюпорта */
-  position: fixed; /* Убирает "дрожание" страницы */
-  margin: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow-x: hidden; /* Отключает горизонтальную прокрутку */
+    touch-action: pan-y; /* Разрешает только вертикальную прокрутку */
+    max-width: 100vw; /* Ограничивает ширину вьюпорта */
+    position: fixed; /* Убирает "дрожание" страницы */
+    margin: 0;
 }
 
 /* Когда добавляется класс fade-out, страница исчезает */
 .fade-out {
-  opacity: 0;
+    opacity: 0;
 }
 /* Define the styles for the unloaded pages */
 html.is-animating .transition-fade {
-  opacity: 0;
+    opacity: 0;
 }
 .mainPageBackground {
-  width: auto;
-  height: 99.4vh;
-  display: flex;
-  justify-content: center;
-  margin-top: -10px;
+    width: auto;
+    height: 99.4vh;
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
 }
 
 .mainPageContent {
-  background-image: url(./img/BackgroundGreen.png);
-  width: 1800px;
-  height: 1006px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    background-image: url(./img/BackgroundGreen.png);
+    width: 1800px;
+    height: 1006px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .line {
-  display: none;
-  background-color: #fcbb7b;
-  width: 100vw;
-  height: 0.2vw;
-  margin: 0 auto;
+    display: none;
+    background-color: #fcbb7b;
+    width: 100vw;
+    height: 0.2vw;
+    margin: 0 auto;
 }
 .mainPageContent h1 {
-  font-size: 3vw;
-  color: white;
-  font-family: "Nunito", sans-serif;
-  font-size: 70px;
-  font-weight: 100;
-  line-height: 95.48px;
-  letter-spacing: 0.27em;
-  text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  margin: 0;
-  padding-top: 56px;
-  padding-bottom: 25px;
+    font-size: 3vw;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 70px;
+    font-weight: 100;
+    line-height: 95.48px;
+    letter-spacing: 0.27em;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin: 0;
+    padding-top: 56px;
+    padding-bottom: 25px;
 }
 .mainPageContent span {
-  font-family: "Nunito", sans-serif;
-  font-size: 35px;
-  font-weight: 100;
-  line-height: 47.74px;
-  text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color: #b0c4bf;
-  margin: 58px 0 80px 0;
+    font-family: 'Nunito', sans-serif;
+    font-size: 35px;
+    font-weight: 100;
+    line-height: 47.74px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #b0c4bf;
+    margin: 58px 0 80px 0;
 }
 .lineMini {
-  background-image: url("./img/line.png");
-  width: 1426.5px;
-  height: 68px;
-  margin: 0 auto;
+    background-image: url('./img/line.png');
+    width: 1426.5px;
+    height: 68px;
+    margin: 0 auto;
 }
 .mainPageContentBtns {
-  display: flex;
-  width: 1373px;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 80px;
+    display: flex;
+    width: 1373px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 80px;
 }
 .btn-posobie {
-  width: 646px;
-  height: 99px;
-  background-image: url("./img/PosobieButton.png");
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
+    width: 646px;
+    height: 99px;
+    background-image: url('./img/PosobieButton.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
 }
 .btn-document {
-  width: 646px;
-  height: 99px;
-  background-image: url("./img/DocumentButton.png");
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
+    width: 646px;
+    height: 99px;
+    background-image: url('./img/DocumentButton.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .btn-document,
 .btn-posobie {
-  outline: none; /* Убирает обводку при фокусе */
+    outline: none; /* Убирает обводку при фокусе */
 }
 
 .btn-document:focus,
 .btn-posobie:focus,
 .btn-posobie:active,
 .btn-posobie:active {
-  outline: none;
-  background-color: transparent; /* Убирает изменение фона */
+    outline: none;
+    background-color: transparent; /* Убирает изменение фона */
 }
 
 .linkBtn,
 .linkBtn1 {
-  outline: none; /* Убирает обводку при фокусе */
+    outline: none; /* Убирает обводку при фокусе */
 }
 
 .linkBtn:focus,
 .linkBtn1:focus,
 .linkBtn:active,
 .linkBtn1:active {
-  outline: none;
-  background-color: transparent; /* Убирает изменение фона */
+    outline: none;
+    background-color: transparent; /* Убирает изменение фона */
 }
 
 .btn-posobie,
 .btn-document {
-  user-select: none; /* Запрещает выделение */
-  -webkit-tap-highlight-color: transparent; /* Убирает синий цвет на мобильных устройствах */
+    user-select: none; /* Запрещает выделение */
+    -webkit-tap-highlight-color: transparent; /* Убирает синий цвет на мобильных устройствах */
 }
 
 .btn span {
-  color: white;
+    color: white;
 }
 .linkBtn {
-  text-decoration: none;
-  padding: 45px 304px;
+    text-decoration: none;
+    padding: 45px 304px;
 }
 
 .fade-out {
-  opacity: 0;
-  transition: opacity 0.1s;
+    opacity: 0;
+    transition: opacity 0.1s;
 }
 
 html.is-changing .transition-fade {
-  transition: opacity 0.25s;
-  opacity: 1;
+    transition: opacity 0.25s;
+    opacity: 1;
 }
 /* Define the styles for the unloaded pages */
 html.is-animating .transition-fade {
-  opacity: 0;
+    opacity: 0;
 }
