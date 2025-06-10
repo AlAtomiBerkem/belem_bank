@@ -2,7 +2,7 @@ const documents = {
     "folderDocument": [
         {
             "id": 0,
-            "title": "Папка 1",
+            "title": "Первая папка она будет супер длинная будем смотреть что можно сделать что-бы красиво накинуть стили",
             "source": "../Documents/Documents.html",
             "img": "./img/folder.png",
             "documents": [

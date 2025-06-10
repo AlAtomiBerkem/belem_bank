@@ -34,6 +34,14 @@ html, body {
     height: 841px; /* Высота контейнера */
     overflow: auto; /* Включаем прокрутку */
 }
+
+.pdf-wrapper {
+    height: 841px; /* Должно совпадать с высотой #pdf-container */
+    width: 1369px;
+    margin: 10px auto 0;
+    position: relative;
+}
+
 body {
     margin: 0;
     background-image: url('./img/BackgroundWhite.png');
@@ -59,13 +67,35 @@ body {
 .header-block {
     display: flex;
     justify-content: space-between;
-    margin-right: 153px;
-}
+ }
 .header-info {
-    padding: 45px 0 0 145px;
-}
-.header-info-path {
+    max-width: 1500px;
+    margin-left: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    mask-image: linear-gradient(
+        to right, 
+        black 95%, 
+        transparent 99%
+    );
     
+ }
+
+
+.header-info-path {
+    margin-top: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 .header-info-path span {
     color: #B0C4BF;
@@ -76,14 +106,42 @@ body {
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     font-family: "Nunito", sans-serif;
-    margin-right: 25px;
+    margin-right: 5px;
+}
+
+.exit {
+    margin-top: 70px;
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 61px;
+    background-image: url('./img/exitButton.png');
+    color: #FFFFFF;
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 41.14px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    font-family: "Nunito", sans-serif;
+    text-decoration: none;
 }
 
 .header-title__conteiner {
     width: fit-content;  
-    overflow: hidden;  
+    /* overflow: hidden;   */
     margin-top: 30px;  
     
+}
+.header-title__conteiner {
+    width: 100%;
+    height: 100px;
+        mask-image: linear-gradient(
+        to left, 
+        black 95%, 
+        transparent 99%
+    );
 }
 .header-title {
     margin-top: 30px;
@@ -114,25 +172,6 @@ body {
     }
 }
 
-
-.exit {
-    margin: 45px 0 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 61px;
-    background-image: url('./img/exitButton.png');
-    color: #FFFFFF;
-    font-size: 35px;
-    font-weight: 600;
-    line-height: 41.14px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    font-family: "Nunito", sans-serif;
-    text-decoration: none;
-}
 .line {
     margin: 26px 0 0 145px;
     background-image: url('./img/Line.png');
