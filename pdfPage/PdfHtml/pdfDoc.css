@@ -80,13 +80,12 @@ body {
 
     mask-image: linear-gradient(
         to right, 
-        black 95%, 
-        transparent 99%
+        black 90%, 
+        transparent 97%
     );
     
  }
-
-
+ 
 .header-info-path {
     margin-top: 25px;
     white-space: nowrap;
@@ -117,6 +116,7 @@ body {
     width: 200px;
     height: 61px;
     background-image: url('./img/exitButton.png');
+    background-repeat: no-repeat; /* Запрещаем повторение */
     color: #FFFFFF;
     font-size: 35px;
     font-weight: 600;
@@ -126,6 +126,7 @@ body {
     text-decoration-skip-ink: none;
     font-family: "Nunito", sans-serif;
     text-decoration: none;
+    padding-right: 80px;
 }
 
 .header-title__conteiner {
