@@ -1,29 +1,30 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 * {
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 html.is-changing .transition-fade {
     transition: opacity 0.25s;
     opacity: 1;
-  }
-  /* Define the styles for the unloaded pages */
-  html.is-animating .transition-fade {
+}
+/* Define the styles for the unloaded pages */
+html.is-animating .transition-fade {
     opacity: 0;
-  }
+}
 
 @font-face {
     font-family: 'Nunito';
-    src: local('Nunito'), url('/Fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+    src:
+        local('Nunito'),
+        url('/Fonts/Nunito-VariableFont_wght.ttf') format('truetype');
 }
-
 
 /* SUBSCRIBE ==> https://www.youtube.com/albdev */
 /* SUBSCRIBE ==> https://www.youtube.com/albdev */
@@ -32,7 +33,7 @@ html.is-changing .transition-fade {
     height: 0;
 }
 .keyboard {
-    background-color: #30574D;
+    background-color: #30574d;
     position: fixed;
     bottom: -88px;
     display: flex;
@@ -48,11 +49,10 @@ html.is-changing .transition-fade {
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    font-family: "Nunito", sans-serif;
+    font-family: 'Nunito', sans-serif;
     border-radius: 38px;
-    border: solid 5px #F4D3AD;
+    border: solid 5px #f4d3ad;
 }
-
 
 button:active {
     background-color: #f3d2ab;
@@ -61,7 +61,7 @@ button:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #618D82;
+    background-color: #618d82;
     color: #fff;
     width: 95px;
     height: 86px;
@@ -74,7 +74,7 @@ button:active {
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    font-family: "Nunito", sans-serif;
+    font-family: 'Nunito', sans-serif;
     border: none;
 }
 .rowStart {
@@ -88,7 +88,7 @@ button:active {
     margin-bottom: 10px;
 }
 .button .inputKey {
-    width: 195; 
+    width: 195;
     height: 86px;
 }
 .delete,
@@ -97,8 +97,8 @@ button:active {
     font-size: 1rem;
     text-transform: capitalize;
 }
-.delete { 
-    background-color: #618D82;
+.delete {
+    background-color: #618d82;
     color: #fff;
     width: 95px;
     height: 86px;
@@ -107,9 +107,10 @@ button:active {
     border: none;
     margin-left: 3px;
 }
-.shift {  }
-.space { 
-    background-color: #618D82;
+.shift {
+}
+.space {
+    background-color: #618d82;
     color: #fff;
     width: 695px;
     height: 86px;
@@ -117,8 +118,8 @@ button:active {
     font-size: 50px;
     border: none;
 }
-.esc {  
-    background-color: #618D82;
+.esc {
+    background-color: #618d82;
     color: #fff;
     width: 95px;
     height: 86px;
@@ -128,7 +129,7 @@ button:active {
     margin-right: 3px;
 }
 .shift {
-    background-color: #618D82;
+    background-color: #618d82;
     color: #fff;
     width: 95px;
     height: 86px;
@@ -137,9 +138,10 @@ button:active {
     border: none;
     margin-right: 3px;
 }
-.enter {}
+.enter {
+}
 .logoKey {
-    background-color: #618D82;
+    background-color: #618d82;
     color: #fff;
     width: 195px;
     height: 86px;
@@ -152,7 +154,7 @@ button:active {
     border: none;
 }
 .inputKey {
-    background-color: #618D82;
+    background-color: #618d82;
     color: #fff;
     width: 195px;
     height: 86px;
@@ -172,12 +174,13 @@ textarea {
     width: 100%;
     height: 150px;
     resize: none;
-    padding: .5rem;
+    padding: 0.5rem;
     font-size: 1.2rem;
     outline: none;
     border: 2px solid rgb(104, 104, 255);
-    border-radius: .5rem;
+    border-radius: 0.5rem;
 }
 
-
-.upper { text-transform: uppercase; }
+.upper {
+    text-transform: uppercase;
+}

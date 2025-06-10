@@ -12,7 +12,6 @@
     border-radius: 30px;
 } */
 
-
 /* ::-webkit-scrollbar {
             background-color: #A6C0BD;
             border: solid 6px #2E514B;
@@ -22,28 +21,27 @@
         ::-webkit-scrollbar-thumb {
             background-color: #608D84;
             /* border: solid 1px white; */
-            /* border-radius: 30px;
-        } */ 
+/* border-radius: 30px;
+        } */
 body {
-    background-color: #2E514B;
+  background-color: #2e514b;
 }
 .pdf-container {
-    display: flex;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 717px; /* Ширина контейнера */
-    height: 841px; /* Высота контейнера */
-    overflow: auto; /* Включаем прокрутку */
+  display: flex;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 717px; /* Ширина контейнера */
+  height: 841px; /* Высота контейнера */
+  overflow: auto; /* Включаем прокрутку */
 }
 .title {
-    color: white;
+  color: white;
 }
 * {
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
