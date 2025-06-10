@@ -1,5 +1,4 @@
 const data = JSON.parse(localStorage.getItem('documentFolder'));
-console.log(data);
 const folderBlock = document.querySelector('.documentContainer');
 const folderTitle = document.createElement('div');
 const container = document.querySelector('.container');
@@ -22,9 +21,7 @@ function getFile(word, stations) {
     });
 }
 
-inputSearch.addEventListener('change', (event) => {
-    console.log(getFile(inputSearch.value, data.documents));
-});
+inputSearch.addEventListener('change', (event) => {});
 keyboardBtns.forEach((button) => {
     button.addEventListener('click', (event) => {
         const init = document.querySelector('.init');
@@ -39,14 +36,15 @@ keyboardBtns.forEach((button) => {
         );
         const folderBlockCopy = document.querySelector('.documentContainer');
         const dataFilter = getFile(inputSearch.value, data.documents);
-        console.log(dataFilter);
         dataFilter.forEach((el) => {
             folderBlockCopy.insertAdjacentHTML(
                 'beforeend',
                 `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png"">
+                    <img src="./img/folder.png">
+                    <div class="documentFon-mask">
                     <span>${el.title}</span>
+                    </div>
                 </div>
             `
             );
@@ -56,7 +54,6 @@ keyboardBtns.forEach((button) => {
 });
 deleteBtn.addEventListener('click', (event) => {
     if (inputSearch !== '') {
-        console.log('хуй');
         const init = document.querySelector('.init');
         let child = init.lastElementChild;
         while (child) {
@@ -74,8 +71,10 @@ deleteBtn.addEventListener('click', (event) => {
                 'beforeend',
                 `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png" >
+                    <img src="./img/folder.png">
+                    <div class="documentFon-mask">
                     <span>${el.title}</span>
+                    </div>
                 </div>
             `
             );
@@ -90,25 +89,28 @@ deleteBtn.addEventListener('click', (event) => {
                 `
                 <div id='${el.id}' class='documentFon'>
                     <img src="./img/folder.png">
+                    <div class="documentFon-mask">
                     <span>${el.title}</span>
+                    </div>
                 </div>
             `
             );
         });
         new SimpleBar(folderBlockCopy);
     }
-    console.log(inputSearch.value);
 });
 
 data.documents.forEach((el) => {
     folderBlock.insertAdjacentHTML(
         'beforeend',
         `
-        <div id='${el.id}' class='documentFon'>
-            <img src="./img/documentLogo.png">
-            <span>${el.title}</span>
-        </div>
-    `
+                <div id='${el.id}' class='documentFon'>
+                    <img src="./img/folder.png">
+                    <div class="documentFon-mask">
+                    <span>${el.title}</span>
+                    </div>
+                </div>
+            `
     );
 });
 new SimpleBar(folderBlock);
@@ -158,8 +160,6 @@ function animateKeyboard(open) {
     requestAnimationFrame(step);
 }
 
-console.log(data);
-
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = 1;
 });
@@ -179,10 +179,8 @@ document.querySelector('.init').addEventListener('click', (event) => {
     if (!link) {
         return;
     } else {
-        console.log('Клик был на одном из элементов');
     }
     event.preventDefault();
-    console.log(event.target.id);
     localStorage.setItem('idDocumentFolder', link.id);
     document.body.style.opacity = 0;
     setTimeout(() => {

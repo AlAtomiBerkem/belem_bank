@@ -1,102 +1,114 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>PDF JS Library</title>
-    <link rel="stylesheet" href="./pdfDoc.css" />
-    <style></style>
-    <script src="https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.min.js"></script>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>PDF JS Library</title>
+        <link rel="stylesheet" href="./pdfDoc.css" />
+        <style></style>
+        <script src="https://unpkg.com/pdfjs-dist@2.10.377/build/pdf.min.js"></script>
+    </head>
 
-  <body>
-    <img src="../../Информ банк/Загрузка.gif" class="gifLoading" alt="" />
-    <div class="info">
-      <header class="header">
-        <div class="header-block">
-          <div class="header-info">
-            <div class="header-info-path">
-              <span>Банк</span>
-              <span>/</span>
-              <span>Документы</span>
-              <span>/</span>
+    <body>
+        <img src="../../Информ банк/Загрузка.gif" class="gifLoading" alt="" />
+        <div class="info">
+            <header class="header">
+                <div class="header-block">
+                    <div class="header-info">
+                        <div class="header-info-path">
+                            <span>Банк</span>
+                            <span>/</span>
+                            <span>Документы</span>
+                            <span>/</span>
+                        </div>
+                        <div class="header-title">НАЗВАНИЕ ДОКУМЕНТА</div>
+                    </div>
+                    <div>
+                        <a class="exit" href="../../Documents/Documents.html"
+                            >Выйти</a
+                        >
+                    </div>
+                </div>
+                <div class="line"></div>
+            </header>
+            <div data-simplebar>
+                <div id="pdf-container"></div>
             </div>
-            <div class="header-title">НАЗВАНИЕ ДОКУМЕНТА</div>
-          </div>
-          <div>
-            <a class="exit" href="../../Documents/Documents.html">Выйти</a>
-          </div>
         </div>
-        <div class="line"></div>
-      </header>
-      <div data-simplebar>
-        <div id="pdf-container"></div>
-      </div>
-    </div>
-    <script src="../simplebar.js"></script>
-    <script>
-      const data = JSON.parse(localStorage.getItem("documentFolder"));
-      const dataNumber = JSON.parse(localStorage.getItem("idDocumentFolder"));
-      console.log(data.documents[Number(dataNumber)].file);
-      const pdfUrl = `${data.documents[Number(dataNumber)].file}`;
-      const container = document.getElementById("pdf-container");
-      const loadingText = document.getElementById("loading-text"); // Элемент с текстом "Загрузка"
-
-      // Load PDF document
-      pdfjsLib
-        .getDocument(pdfUrl)
-        .promise.then((pdfDoc) => {
-          const promises = [];
-
-          for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-            promises.push(
-              pdfDoc.getPage(pageNum).then((page) => {
-                const viewport = page.getViewport({ scale: 2.3 });
-                const canvas = document.createElement("canvas");
-                container.appendChild(canvas);
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-
-                const renderContext = {
-                  canvasContext: canvas.getContext("2d"),
-                  viewport: viewport,
-                };
-                return page.render(renderContext).promise;
-              }),
+        <script src="../simplebar.js"></script>
+        <script>
+            const data = JSON.parse(localStorage.getItem('documentFolder'));
+            const dataNumber = JSON.parse(
+                localStorage.getItem('idDocumentFolder')
             );
-          }
+            console.log(data.documents[Number(dataNumber)].file);
+            const pdfUrl = `${data.documents[Number(dataNumber)].file}`;
+            const container = document.getElementById('pdf-container');
+            const loadingText = document.getElementById('loading-text'); // Элемент с текстом "Загрузка"
 
-          return Promise.all(promises);
-        })
-        .then(() => {
-          new SimpleBar(container);
-          document.querySelector(".gifLoading").style.opacity = 0;
-          setTimeout(() => {
-            console.log(1);
-            document.querySelector(".gifLoading").style.display = "none";
-            document.querySelector(".info").style.opacity = 1;
-            document.querySelector(".info").style.display = "block";
-          }, 250);
-          console.log("PDF загружен успешно");
-        })
-        .catch((err) => {
-          console.error("Ошибка при загрузке PDF: ", err);
-          document.querySelector(".gifLoading").style.opacity = 0;
-          setTimeout(() => {
-            console.log(1);
-            document.querySelector(".gifLoading").style.display = "none";
-            document.querySelector(".info").style.opacity = 1;
-            document.querySelector(".info").style.display = "block";
-          }, 250);
-          loadingText.textContent = "Ошибка при загрузке";
-        });
-    </script>
+            // Load PDF document
+            pdfjsLib
+                .getDocument(pdfUrl)
+                .promise.then((pdfDoc) => {
+                    const promises = [];
 
-    <script src="./pdfDoc.js"></script>
-  </body>
+                    for (
+                        let pageNum = 1;
+                        pageNum <= pdfDoc.numPages;
+                        pageNum++
+                    ) {
+                        promises.push(
+                            pdfDoc.getPage(pageNum).then((page) => {
+                                const viewport = page.getViewport({
+                                    scale: 2.3
+                                });
+                                const canvas = document.createElement('canvas');
+                                container.appendChild(canvas);
+                                canvas.width = viewport.width;
+                                canvas.height = viewport.height;
 
-  <link rel="stylesheet" href="../simplebar.css" />
+                                const renderContext = {
+                                    canvasContext: canvas.getContext('2d'),
+                                    viewport: viewport
+                                };
+                                return page.render(renderContext).promise;
+                            })
+                        );
+                    }
+
+                    return Promise.all(promises);
+                })
+                .then(() => {
+                    new SimpleBar(container);
+                    document.querySelector('.gifLoading').style.opacity = 0;
+                    setTimeout(() => {
+                        console.log(1);
+                        document.querySelector('.gifLoading').style.display =
+                            'none';
+                        document.querySelector('.info').style.opacity = 1;
+                        document.querySelector('.info').style.display = 'block';
+                    }, 250);
+                    console.log('PDF загружен успешно');
+                })
+                .catch((err) => {
+                    console.error('Ошибка при загрузке PDF: ', err);
+                    document.querySelector('.gifLoading').style.opacity = 0;
+                    setTimeout(() => {
+                        console.log(1);
+                        document.querySelector('.gifLoading').style.display =
+                            'none';
+                        document.querySelector('.info').style.opacity = 1;
+                        document.querySelector('.info').style.display = 'block';
+                    }, 250);
+                    loadingText.textContent = 'Ошибка при загрузке';
+                });
+        </script>
+
+        <script src="./pdfDoc.js"></script>
+    </body>
+
+    <link rel="stylesheet" href="../simplebar.css" />
 </html>
