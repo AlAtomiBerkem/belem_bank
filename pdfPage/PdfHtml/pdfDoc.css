@@ -17,9 +17,9 @@ html.is-changing .transition-fade {
 html, body {
     width: 1920px;
     height: 1080px;
-    touch-action: pan-y; /* Разрешает только вертикальную прокрутку */
-    max-width: 100vw;    /* Ограничивает ширину вьюпорта */
-    position: fixed;      /* Убирает "дрожание" страницы */
+    touch-action: pan-y;
+    max-width: 100vw;  
+    position: fixed;
     touch-action: none;
 }
 .title {
@@ -30,13 +30,13 @@ html, body {
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 1369px; /* Ширина контейнера */
-    height: 841px; /* Высота контейнера */
-    overflow: auto; /* Включаем прокрутку */
+    width: 1369px;
+    height: 841px;
+    overflow: auto;
 }
 
 .pdf-wrapper {
-    height: 841px; /* Должно совпадать с высотой #pdf-container */
+    height: 841px;
     width: 1369px;
     margin: 10px auto 0;
     position: relative;
