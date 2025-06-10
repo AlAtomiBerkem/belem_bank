@@ -2615,14 +2615,14 @@ const documents = {
     "folderMethodical":  [
         {
             "id": 0,
-            "title": "Папка пособии 1",
+            "title": "Папка пособии 1 тут тоже будет длинный текст который мы тоже будем скрывать такие дела",
             "source": "../Documents/Documents.html",
             "img": "./img/folder.png",
             "documents": [
                 {
                     "idFolderDocument": 0,
                     "id": 0,
-                    "title": "Пособие 1",
+                    "title": "Пособие 1 тут будет находится название файла и не всегда оно будет коротким такие дела",
                     "source": "../pdfPage/PdfHtml/pdfDoc1.html", "img": "./img/documentLogo.png",
                     "file": "../../pdfDoc/Перечень_изменений_по_стенду_ИС_Книжная_полка.pdf"
                 },

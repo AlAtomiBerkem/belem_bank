@@ -133,8 +133,6 @@
   [data-simplebar].simplebar-dragging .simplebar-track {
     pointer-events: all;
   }
-
-  
   
  .simplebar-scrollbar {
     width: 24px;
@@ -144,7 +142,6 @@
     border-radius: 30px;
     margin-right: 10px;
     margin-left: -11px;
-    /* Увеличиваем область взаимодействия */
     position: relative;
     z-index: 1;
     transform: translateZ(0); /* Аппаратное ускорение */
@@ -170,7 +167,6 @@
     width: 6px;
     margin-left: -70px;
   }
-
   .simplebar-track.simplebar-vertical:nth-child() {
     display: none;
   }
