@@ -83,6 +83,15 @@ body {
     margin: 45px 175px 0 113px;
     align-items: center;
 }
+.text-path {
+    white-space: nowrap;
+    width: 1000px;
+        mask-image: linear-gradient(
+        to right, 
+        black 90%, 
+        transparent 97%
+    );
+}
 .text-path span{
     color: #B0C4BF;
     font-size: 35px;
