@@ -1,184 +1,187 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 * {
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 html.is-changing .transition-fade {
-    transition: opacity 0.25s;
-    opacity: 1;
-  }
-  /* Define the styles for the unloaded pages */
-  html.is-animating .transition-fade {
-    opacity: 0;
-  }
-
-@font-face {
-    font-family: 'Nunito';
-    src: local('Nunito'), url('/Fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+/* Define the styles for the unloaded pages */
+html.is-animating .transition-fade {
+  opacity: 0;
 }
 
+@font-face {
+  font-family: "Nunito";
+  src:
+    local("Nunito"),
+    url("/Fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+}
 
 /* SUBSCRIBE ==> https://www.youtube.com/albdev */
 /* SUBSCRIBE ==> https://www.youtube.com/albdev */
 .container {
-    display: none;
-    height: 0;
+  display: none;
+  height: 0;
 }
 
 .keyboard {
-    background-color: #30574D;
-    position: fixed;
-    bottom: -88px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    left: 395px;
-    width: 1139px;
-    height: 501px;
-    font-size: 50px;
-    font-weight: 600;
-    line-height: 41.14px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    font-family: "Nunito", sans-serif;
-    border-radius: 38px;
-    border: solid 5px #F4D3AD;
+  background-color: #30574d;
+  position: fixed;
+  bottom: -88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 395px;
+  width: 1139px;
+  height: 501px;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 41.14px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  font-family: "Nunito", sans-serif;
+  border-radius: 38px;
+  border: solid 5px #f4d3ad;
 }
-
 
 button:active {
-    background-color: #f3d2ab;
+  background-color: #f3d2ab;
 }
 .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #618D82;
-    color: #fff;
-    width: 95px;
-    height: 86px;
-    margin-right: 3px;
-    margin-left: 3px;
-    border-radius: 18px;
-    font-size: 50px;
-    font-weight: 600;
-    line-height: 41.14px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    font-family: "Nunito", sans-serif;
-    border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #618d82;
+  color: #fff;
+  width: 95px;
+  height: 86px;
+  margin-right: 3px;
+  margin-left: 3px;
+  border-radius: 18px;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 41.14px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  font-family: "Nunito", sans-serif;
+  border: none;
 }
 .rowStart {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .rowend {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .row {
-    display: flex;
-    margin-bottom: 10px;
+  display: flex;
+  margin-bottom: 10px;
 }
 .button .inputKey {
-    width: 195; 
-    height: 86px;
+  width: 195;
+  height: 86px;
 }
 .delete,
 .shift,
 .space {
-    font-size: 1rem;
-    text-transform: capitalize;
+  font-size: 1rem;
+  text-transform: capitalize;
 }
-.delete { 
-    background-color: #618D82;
-    color: #fff;
-    width: 95px;
-    height: 86px;
-    border-radius: 18px;
-    font-size: 50px;
-    border: none;
-    margin-left: 3px;
-}
-.shift {  }
-.space { 
-    background-color: #618D82;
-    color: #fff;
-    width: 695px;
-    height: 86px;
-    border-radius: 18px;
-    font-size: 50px;
-    border: none;
-}
-.esc {  
-    background-color: #618D82;
-    color: #fff;
-    width: 95px;
-    height: 86px;
-    border-radius: 18px;
-    font-size: 50px;
-    border: none;
-    margin-right: 3px;
+.delete {
+  background-color: #618d82;
+  color: #fff;
+  width: 95px;
+  height: 86px;
+  border-radius: 18px;
+  font-size: 50px;
+  border: none;
+  margin-left: 3px;
 }
 .shift {
-    background-color: #618D82;
-    color: #fff;
-    width: 95px;
-    height: 86px;
-    border-radius: 18px;
-    font-size: 50px;
-    border: none;
-    margin-right: 3px;
 }
-.enter {}
+.space {
+  background-color: #618d82;
+  color: #fff;
+  width: 695px;
+  height: 86px;
+  border-radius: 18px;
+  font-size: 50px;
+  border: none;
+}
+.esc {
+  background-color: #618d82;
+  color: #fff;
+  width: 95px;
+  height: 86px;
+  border-radius: 18px;
+  font-size: 50px;
+  border: none;
+  margin-right: 3px;
+}
+.shift {
+  background-color: #618d82;
+  color: #fff;
+  width: 95px;
+  height: 86px;
+  border-radius: 18px;
+  font-size: 50px;
+  border: none;
+  margin-right: 3px;
+}
+.enter {
+}
 .logoKey {
-    background-color: #618D82;
-    color: #fff;
-    width: 195px;
-    height: 86px;
-    border-radius: 18px;
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 6px;
-    border: none;
+  background-color: #618d82;
+  color: #fff;
+  width: 195px;
+  height: 86px;
+  border-radius: 18px;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
+  border: none;
 }
 .inputKey {
-    background-color: #618D82;
-    color: #fff;
-    width: 195px;
-    height: 86px;
-    border-radius: 18px;
-    font-size: 50px;
-    margin-left: 6px;
-    border: none;
+  background-color: #618d82;
+  color: #fff;
+  width: 195px;
+  height: 86px;
+  border-radius: 18px;
+  font-size: 50px;
+  margin-left: 6px;
+  border: none;
 }
 
 .textarea {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 textarea {
-    width: 100%;
-    height: 150px;
-    resize: none;
-    padding: .5rem;
-    font-size: 1.2rem;
-    outline: none;
-    border: 2px solid rgb(104, 104, 255);
-    border-radius: .5rem;
+  width: 100%;
+  height: 150px;
+  resize: none;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  outline: none;
+  border: 2px solid rgb(104, 104, 255);
+  border-radius: 0.5rem;
 }
 
-
-.upper { text-transform: uppercase; }
+.upper {
+  text-transform: uppercase;
+}

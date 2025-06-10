@@ -7,27 +7,30 @@
 } */
 @font-face {
     font-family: 'Nunito';
-    src: local('Nunito'), url('/Fonts/Nunito-VariableFont_wght.ttf') format('truetype');
+    src:
+        local('Nunito'),
+        url('/Fonts/Nunito-VariableFont_wght.ttf') format('truetype');
 }
 html.is-changing .transition-fade {
     transition: opacity 0.25s;
     opacity: 1;
-  }
-html, body {
+}
+html,
+body {
     width: 1920px;
     height: 1080px;
-    overflow-x: hidden;  /* Отключает горизонтальную прокрутку */
+    overflow-x: hidden; /* Отключает горизонтальную прокрутку */
     touch-action: pan-y; /* Разрешает только вертикальную прокрутку */
-    max-width: 100vw;    /* Ограничивает ширину вьюпорта */
-    position: fixed;      /* Убирает "дрожание" страницы */
+    max-width: 100vw; /* Ограничивает ширину вьюпорта */
+    position: fixed; /* Убирает "дрожание" страницы */
 }
 /* Define the styles for the unloaded pages */
 html.is-animating .transition-fade {
-opacity: 0;
+    opacity: 0;
 }
 * {
-    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
-  }
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
 body {
     background-image: url('./img/BackgroundWhite.png');
     opacity: 0;
@@ -41,7 +44,7 @@ body {
     padding-top: 10px;
     padding-left: 168px;
 }
-.documentContent{
+.documentContent {
     background-image: url('./img/BackgroundGreen.png');
     width: 1800px;
     height: 994px;
@@ -86,21 +89,17 @@ body {
 .text-path {
     white-space: nowrap;
     width: 1000px;
-        mask-image: linear-gradient(
-        to right, 
-        black 90%, 
-        transparent 97%
-    );
+    mask-image: linear-gradient(to right, black 90%, transparent 97%);
 }
-.text-path span{
-    color: #B0C4BF;
+.text-path span {
+    color: #b0c4bf;
     font-size: 35px;
     font-weight: 600;
     line-height: 41.14px;
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    font-family: "Nunito", sans-serif;
+    font-family: 'Nunito', sans-serif;
     margin-right: 25px;
 }
 .documentTitle h1 {
@@ -112,8 +111,8 @@ body {
     padding: 1.5vw 0;
 }
 .searc1 {
-    background-color:#628D84;
-    font-family: "Nunito", sans-serif;
+    background-color: #628d84;
+    font-family: 'Nunito', sans-serif;
     font-size: 35px;
     font-weight: 600;
     line-height: 28.15px;
@@ -123,16 +122,15 @@ body {
     padding-left: 25px;
     color: white;
 
-
     width: 557px;
     height: 61px;
     gap: 0px;
     border-radius: 99px;
-    border: 5px solid #B0C4BF;
+    border: 5px solid #b0c4bf;
 }
 .documentTitle input {
-    background-color:#628D84;
-    font-family: "Nunito", sans-serif;
+    background-color: #628d84;
+    font-family: 'Nunito', sans-serif;
     font-size: 35px;
     font-weight: 600;
     line-height: 28.15px;
@@ -142,18 +140,16 @@ body {
     padding-left: 25px;
     color: white;
 
-
     width: 557px;
     height: 61px;
     gap: 0px;
     border-radius: 99px;
-    border: 5px solid #B0C4BF;
-
+    border: 5px solid #b0c4bf;
 }
-.documentTitle input::-webkit-input-placeholder {  
+.documentTitle input::-webkit-input-placeholder {
     color: white;
 }
-.documentContainer{
+.documentContainer {
     /* display: grid;
     grid-template-columns: 16% 16% 16% 16% 16%;
     justify-content: center;
@@ -170,9 +166,9 @@ body {
     left: 252px;
     gap: 0px;
     background-image: url(./img/cell.png);
-    opacity: 0px;    
+    opacity: 0px;
     display: flex;
-    align-items:center;
+    align-items: center;
     margin-bottom: 10px;
     text-decoration: none;
 
@@ -182,39 +178,44 @@ body {
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    font-family: "Nunito", sans-serif;
-
-
+    font-family: 'Nunito', sans-serif;
 }
 .documentFon img {
     width: 32px;
     height: 39px;
     margin-left: 30px;
 }
+
 .documentFon span {
-    color:#FFFFFF;
+    color: #ffffff;
     padding-left: 20px;
 }
+
 .footer {
     margin-top: 28px;
     display: flex;
     align-items: center;
 }
+
 .rusTat {
     margin-left: 43px;
 }
+
 .exit {
     width: 52px;
     height: 52px;
     background-image: url(./img/Button_Back_all_Dark.png);
     margin-left: 27px;
 }
+
 .exit:active {
     background-image: url(./img/Button_Back_all_Light.png);
 }
+
 .logo {
     margin-left: 1349px;
 }
+
 .fon {
     display: none;
     margin: 0;
@@ -230,8 +231,6 @@ body {
     width: 100%;
 }
 
-
-
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -245,21 +244,21 @@ body {
     z-index: 9999;
     opacity: 1;
     pointer-events: none;
-    transition: opacity 0.5s ease, display 0s 0.5s;  /* Плавное исчезновение */
+    transition:
+        opacity 0.5s ease,
+        display 0s 0.5s; /* Плавное исчезновение */
 }
 
-.loading-overlay[style*="opacity: 0"] {
+.loading-overlay[style*='opacity: 0'] {
     pointer-events: none;
 }
-  
-  .loading-text {
+
+.loading-text {
     color: white;
     font-size: 24px;
-  }
+}
 
-
-
-  /* Стиль для текста "Загрузка" */
+/* Стиль для текста "Загрузка" */
 #loading-text {
     color: white;
     font-size: 24px;
@@ -267,66 +266,91 @@ body {
     margin-top: 20px;
 }
 @keyframes ldio-yzaezf3dcmj {
-0% { opacity: 1 }
-100% { opacity: 0 }
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 .ldio-yzaezf3dcmj div {
-left: 93.06px;
-top: 18.81px;
-position: absolute;
-animation: ldio-yzaezf3dcmj linear 8.333333333333334s infinite;
-background: #ffffff;
-width: 11.879999999999999px;
-height: 41.58px;
-border-radius: 5.9399999999999995px / 7.484400000000001px;
-transform-origin: 5.9399999999999995px 80.19px;
-}.ldio-yzaezf3dcmj div:nth-child(1) {
-transform: rotate(0deg);
-animation-delay: -7.291666666666667s;
-background: #ffffff;
-}.ldio-yzaezf3dcmj div:nth-child(2) {
-transform: rotate(45deg);
-animation-delay: -6.25s;
-background: #ffffff;
-}.ldio-yzaezf3dcmj div:nth-child(3) {
-transform: rotate(90deg);
-animation-delay: -5.208333333333334s;
-background: #ffffff;
-}.ldio-yzaezf3dcmj div:nth-child(4) {
-transform: rotate(135deg);
-animation-delay: -4.166666666666667s;
-background: #ffffff;
-}.ldio-yzaezf3dcmj div:nth-child(5) {
-transform: rotate(180deg);
-animation-delay: -3.125s;
-background: #ffffff;
-}.ldio-yzaezf3dcmj div:nth-child(6) {
-transform: rotate(225deg);
-animation-delay: -2.0833333333333335s;
-background: #ffffff;
-}.ldio-yzaezf3dcmj div:nth-child(7) {
-transform: rotate(270deg);
-animation-delay: -1.0416666666666667s;
-background: #ffffff;
-}.ldio-yzaezf3dcmj div:nth-child(8) {
-transform: rotate(315deg);
-animation-delay: 0s;
-background: #ffffff;
+    left: 93.06px;
+    top: 18.81px;
+    position: absolute;
+    animation: ldio-yzaezf3dcmj linear 8.333333333333334s infinite;
+    background: #ffffff;
+    width: 11.879999999999999px;
+    height: 41.58px;
+    border-radius: 5.9399999999999995px / 7.484400000000001px;
+    transform-origin: 5.9399999999999995px 80.19px;
 }
+
+.ldio-yzaezf3dcmj div:nth-child(1) {
+    transform: rotate(0deg);
+    animation-delay: -7.291666666666667s;
+    background: #ffffff;
+}
+
+.ldio-yzaezf3dcmj div:nth-child(2) {
+    transform: rotate(45deg);
+    animation-delay: -6.25s;
+    background: #ffffff;
+}
+
+.ldio-yzaezf3dcmj div:nth-child(3) {
+    transform: rotate(90deg);
+    animation-delay: -5.208333333333334s;
+    background: #ffffff;
+}
+
+.ldio-yzaezf3dcmj div:nth-child(4) {
+    transform: rotate(135deg);
+    animation-delay: -4.166666666666667s;
+    background: #ffffff;
+}
+
+.ldio-yzaezf3dcmj div:nth-child(5) {
+    transform: rotate(180deg);
+    animation-delay: -3.125s;
+    background: #ffffff;
+}
+
+.ldio-yzaezf3dcmj div:nth-child(6) {
+    transform: rotate(225deg);
+    animation-delay: -2.0833333333333335s;
+    background: #ffffff;
+}
+
+.ldio-yzaezf3dcmj div:nth-child(7) {
+    transform: rotate(270deg);
+    animation-delay: -1.0416666666666667s;
+    background: #ffffff;
+}
+
+.ldio-yzaezf3dcmj div:nth-child(8) {
+    transform: rotate(315deg);
+    animation-delay: 0s;
+    background: #ffffff;
+}
+
 .loadingio-spinner-spinner-2by998twmg8 {
-width: 198px;
-height: 198px;
-display: inline-block;
-overflow: hidden;
-/* background: #ffffff; */
+    width: 198px;
+    height: 198px;
+    display: inline-block;
+    overflow: hidden;
+    /* background: #ffffff; */
 }
+
 .ldio-yzaezf3dcmj {
-width: 100%;
-height: 100%;
-position: relative;
-transform: translateZ(0) scale(1);
-backface-visibility: hidden;
-transform-origin: 0 0; /* see note above */
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
 }
-.ldio-yzaezf3dcmj div { box-sizing: content-box; }
+
+.ldio-yzaezf3dcmj div {
+    box-sizing: content-box;
+}
 /* [ldio] generated by https://loading.io */

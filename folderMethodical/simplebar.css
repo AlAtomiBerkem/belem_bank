@@ -86,7 +86,6 @@ html.is-animating .transition-fade {
 .simplebar-content {
 }
 
-
 .simplebar-placeholder {
   max-height: 100%;
   max-width: 100%;
@@ -157,8 +156,8 @@ html.is-animating .transition-fade {
 
 .simplebar-scrollbar:before {
   position: absolute;
-  content: '';
-  background: #B0C4BF;
+  content: "";
+  background: #b0c4bf;
   border-radius: 7px;
   left: 2px;
   right: 2px;
@@ -177,13 +176,12 @@ html.is-animating .transition-fade {
   width: 6px;
   margin-top: 18px;
   margin-right: 1684px;
-  background-color: #618D82;
+  background-color: #618d82;
 }
 
 .simplebar-track.simplebar-vertical .simplebar-scrollbar:before {
   top: 2px;
   bottom: 2px;
-  
 }
 
 .simplebar-track.simplebar-horizontal {
@@ -208,7 +206,7 @@ html.is-animating .transition-fade {
 }
 
 /* Rtl support */
-[data-simplebar-direction='rtl'] .simplebar-track.simplebar-vertical {
+[data-simplebar-direction="rtl"] .simplebar-track.simplebar-vertical {
   right: auto;
   left: 0;
 }
