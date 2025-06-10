@@ -1,8 +1,4 @@
-
-
-
-
-let closeLoading = false;
+ let closeLoading = false;
 // setTimeout(() => {
 //     document.querySelector('.gifLoading').style.opacity = 0;
 //     setTimeout(() => {
@@ -49,11 +45,12 @@ function resetTimer() {
 
 // Запуск таймера при загрузке страницы
 document.addEventListener("DOMContentLoaded", resetTimer);
-
+console.log('инициализируем скролл');
 // Сброс таймера при взаимодействии пользователя (нажатия, движения, скроллы)
 ["click", "mousemove", "keypress", "touchstart", "scroll"].forEach(event => {
     console.log(2)
     document.addEventListener(event, resetTimer);
+    console.log(document.element('scroll'))
 });
 
 document.addEventListener('contextmenu', event => event.preventDefault());
