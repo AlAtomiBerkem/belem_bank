@@ -10,60 +10,60 @@ const esc_btn = document.querySelector('.esc');
 let chars = [];
 
 buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        input.value += btn.innerText;
-        chars = input.value.split('');
-    });
+  btn.addEventListener('click', () => {
+    input.value += btn.innerText;
+    chars = input.value.split('');
+  });
 });
 
 delete_btn.addEventListener('click', () => {
-    chars.pop();
-    input.value = chars.join('');
+  chars.pop();
+  input.value = chars.join('');
 });
 
 space_btn.addEventListener('click', () => {
-    chars.push(' ');
-    input.value = chars.join('');
+  chars.push(' ');
+  input.value = chars.join('');
 });
 
 shift_btn.addEventListener('click', () => {
-    buttons.forEach((btn) => {
-        btn.classList.toggle('upper');
-    });
+  buttons.forEach((btn) => {
+    btn.classList.toggle('upper');
+  });
 });
 
 esc_btn.addEventListener('click', (event) => {
-    // event.preventDefault();
-    // input.value = ""
-    const keyboard = document.querySelector('.keyboard');
-    const isOpen = parseInt(window.getComputedStyle(keyboard).bottom) < 0;
-    animateKeyboard(isOpen);
+  // event.preventDefault();
+  // input.value = ""
+  const keyboard = document.querySelector('.keyboard');
+  const isOpen = parseInt(window.getComputedStyle(keyboard).bottom) < 0;
+  animateKeyboard(isOpen);
 
-    setTimeout(() => {
-        fonElement.style.display = 'none';
-        containerBoard.style.display = 'none';
-    }, 500);
+  setTimeout(() => {
+    fonElement.style.display = 'none';
+    containerBoard.style.display = 'none';
+  }, 500);
 });
 
 function animateKeyboard(open) {
-    const keyboard = document.querySelector('.keyboard');
-    let start = open ? -88 : 440;
-    let end = open ? 440 : -88;
-    let duration = 500; // Время анимации в миллисекундах
-    let startTime = null;
+  const keyboard = document.querySelector('.keyboard');
+  let start = open ? -88 : 440;
+  let end = open ? 440 : -88;
+  let duration = 500; // Время анимации в миллисекундах
+  let startTime = null;
 
-    function step(currentTime) {
-        if (!startTime) startTime = currentTime;
-        let progress = (currentTime - startTime) / duration;
+  function step(currentTime) {
+    if (!startTime) startTime = currentTime;
+    let progress = (currentTime - startTime) / duration;
 
-        if (progress > 1) progress = 1;
+    if (progress > 1) progress = 1;
 
-        keyboard.style.bottom = start + (end - start) * progress + 'px';
+    keyboard.style.bottom = start + (end - start) * progress + 'px';
 
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
+    if (progress < 1) {
+      requestAnimationFrame(step);
     }
+  }
 
-    requestAnimationFrame(step);
+  requestAnimationFrame(step);
 }
