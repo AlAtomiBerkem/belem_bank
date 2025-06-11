@@ -58,7 +58,7 @@ html.is-animating .transition-fade {
 .mainPageContent h1 {
   font-size: 3vw;
   color: white;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 70px;
   font-weight: 100;
   line-height: 95.48px;
@@ -71,7 +71,7 @@ html.is-animating .transition-fade {
   padding-bottom: 25px;
 }
 .mainPageContent span {
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 35px;
   font-weight: 100;
   line-height: 47.74px;
@@ -82,7 +82,7 @@ html.is-animating .transition-fade {
   margin: 58px 0 80px 0;
 }
 .lineMini {
-  background-image: url("./img/line.png");
+  background-image: url('./img/line.png');
   width: 1426.5px;
   height: 68px;
   margin: 0 auto;
@@ -97,7 +97,7 @@ html.is-animating .transition-fade {
 .btn-posobie {
   width: 646px;
   height: 99px;
-  background-image: url("./img/PosobieButton.png");
+  background-image: url('./img/PosobieButton.png');
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,7 +108,7 @@ html.is-animating .transition-fade {
 .btn-document {
   width: 646px;
   height: 99px;
-  background-image: url("./img/DocumentButton.png");
+  background-image: url('./img/DocumentButton.png');
   display: flex;
   justify-content: center;
   align-items: center;

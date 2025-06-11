@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "Nunito";
+  font-family: 'Nunito';
   src:
-    local("Nunito"),
-    url("/Fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+    local('Nunito'),
+    url('/Fonts/Nunito-VariableFont_wght.ttf') format('truetype');
 }
 html.is-changing .transition-fade {
   transition: opacity 0.25s;
@@ -47,7 +47,7 @@ body {
 
 body {
   margin: 0;
-  background-image: url("./img/BackgroundWhite.png");
+  background-image: url('./img/BackgroundWhite.png');
   opacity: 0;
   transition: opacity 0.5s;
 }
@@ -61,7 +61,7 @@ body {
   transition: opacity 0.5s;
 }
 .header {
-  background-image: url("./img/Header.png");
+  background-image: url('./img/Header.png');
   width: 1800px;
   height: 270px;
   margin: -8px auto;
@@ -100,7 +100,7 @@ body {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   margin-right: 5px;
 }
 
@@ -111,7 +111,7 @@ body {
   justify-content: center;
   width: 200px;
   height: 61px;
-  background-image: url("./img/exitButton.png");
+  background-image: url('./img/exitButton.png');
   background-repeat: no-repeat; /* Запрещаем повторение */
   color: #ffffff;
   font-size: 35px;
@@ -120,20 +120,20 @@ body {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   text-decoration: none;
   padding-right: 80px;
 }
 
 .header-title__conteiner {
   width: fit-content;
-  /* overflow: hidden;   */
+  overflow: hidden;  
   margin-top: 30px;
 }
 .header-title__conteiner {
   width: 100%;
   height: 100px;
-  mask-image: linear-gradient(to left, black 95%, transparent 99%);
+
 }
 .header-title {
   margin-top: 30px;
@@ -144,13 +144,23 @@ body {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   white-space: nowrap;
 }
 
 .header-title {
   animation: marquee 7s linear infinite alternate;
   padding: 20px;
+}
+
+.header-title_mask {
+    width: 1500px;
+    overflow: hidden;
+    white-space: nowrap;
+   mask-image: 
+    linear-gradient(to left, black 98.5%, transparent 99%),
+    linear-gradient(to right, black 85%, transparent 98%);
+  mask-composite: intersect;
 }
 
 @keyframes marquee {
@@ -164,7 +174,7 @@ body {
 
 .line {
   margin: 26px 0 0 145px;
-  background-image: url("./img/Line.png");
+  background-image: url('./img/Line.png');
   width: 1503px;
   height: 5px;
 }

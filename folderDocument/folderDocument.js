@@ -1,13 +1,12 @@
-const data = JSON.parse(localStorage.getItem("documents"));
-console.log(data.folderDocument);
-const folderBlock = document.querySelector(".documentContainer");
-const folderTitle = document.createElement("div");
-const container = document.querySelector(".container");
-const inputSearch = document.querySelector(".search");
-const cancelSearch = document.querySelector(".cancelSearch");
-const keyboardBtns = document.querySelectorAll(".btn");
-const deleteBtn = document.querySelector(".delete");
-const fonElement = document.querySelector(".fon");
+const data = JSON.parse(localStorage.getItem('documents'));
+const folderBlock = document.querySelector('.documentContainer');
+const folderTitle = document.createElement('div');
+const container = document.querySelector('.container');
+const inputSearch = document.querySelector('.search');
+const cancelSearch = document.querySelector('.cancelSearch');
+const keyboardBtns = document.querySelectorAll('.btn');
+const deleteBtn = document.querySelector('.delete');
+const fonElement = document.querySelector('.fon');
 const fullTitle = [];
 let flagKeyboard = true;
 data.folderDocument.forEach((el) => {
@@ -16,97 +15,120 @@ data.folderDocument.forEach((el) => {
     fullTitle.push(element);
   });
 });
-console.log(fullTitle);
+console.log('мы находимся на странице folderDocument.html')
+const observer = new MutationObserver(() => {
+  const spans = document.querySelectorAll('.documentFon-mask > span');
+  
+  spans.forEach(span => {
+    const textLength = span.textContent.length;
+    const maxVisibleChars = 72;
+    console.log(textLength)
+    
+    if (textLength > maxVisibleChars) {
+      span.style.animation = 'scrollText 10s linear infinite alternate';
+      console.log('работает')
+    } else {
+      console.log('не работатет')
+      span.style.animation = 'none';
+    }
+  });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
 
 function getFile(word, stations) {
   return stations.filter((s) => {
-    const regex = new RegExp(word, "gi");
+    const regex = new RegExp(word, 'gi');
     return s.title.match(regex);
   });
 }
 
-inputSearch.addEventListener("change", (event) => {
-  console.log(getFile(inputSearch.value, fullTitle));
-});
 keyboardBtns.forEach((button) => {
-  button.addEventListener("click", (event) => {
+  button.addEventListener('click', (event) => {
     flagKeyboard = false;
-    const init = document.querySelector(".init");
+    const init = document.querySelector('.init');
     let child = init.lastElementChild;
     while (child) {
       init.removeChild(child);
       child = init.lastElementChild;
     }
     init.insertAdjacentHTML(
-      "beforeend",
-      `<div class='documentContainer' style="width: 100%;"></div>`,
+      'beforeend',
+      `<div class='documentContainer' style="width: 100%;"></div>`
     );
-    const folderBlockCopy = document.querySelector(".documentContainer");
+    const folderBlockCopy = document.querySelector('.documentContainer');
     const dataFilter = getFile(inputSearch.value, fullTitle);
     dataFilter.forEach((el) => {
       folderBlockCopy.insertAdjacentHTML(
-        "beforeend",
+        'beforeend',
         `
-                <a id='${el.id}' class='documentFon' href="${el.source}">
-                    <img class="documentFonImg" id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
-                    <span class='documentFonSpan' id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
-                </a>
-            `,
+      <a id='${el.id}' class='documentFon' href="${el.source}"> 
+        <img id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}"> 
+        <div class="documentFon-mask"> 
+        <span id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
+        </div>
+      </a>
+      `
       );
     });
     new SimpleBar(folderBlockCopy);
   });
 });
-deleteBtn.addEventListener("click", (event) => {
-  if (inputSearch.value !== "") {
+deleteBtn.addEventListener('click', (event) => {
+  if (inputSearch.value !== '') {
     flagKeyboard = false;
-    const init = document.querySelector(".init");
+    const init = document.querySelector('.init');
     let child = init.lastElementChild;
     while (child) {
       init.removeChild(child);
       child = init.lastElementChild;
     }
     init.insertAdjacentHTML(
-      "beforeend",
-      `<div class='documentContainer' style="width: 100%;"></div>`,
+      'beforeend',
+      `<div class='documentContainer' style="width: 100%;"></div>`
     );
-    const folderBlockCopy = document.querySelector(".documentContainer");
+    const folderBlockCopy = document.querySelector('.documentContainer');
     const dataFilter = getFile(inputSearch.value, fullTitle);
     dataFilter.forEach((el) => {
       folderBlockCopy.insertAdjacentHTML(
-        "beforeend",
+        'beforeend',
         `
                 <a id='${el.id}' class='documentFon' href="${el.source}">
-                    <img class="documentFonImg" id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
-                    <span class='documentFonSpan' id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
-                </a>
-            `,
+                    <img id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
+                    <div class="documentFon-mask">
+                    <span  id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
+                    </div>
+                    </a>
+            `
       );
     });
     new SimpleBar(folderBlockCopy);
   } else {
     flagKeyboard = true;
-    const init = document.querySelector(".init");
+    const init = document.querySelector('.init');
     let child = init.lastElementChild;
     while (child) {
       init.removeChild(child);
       child = init.lastElementChild;
     }
     init.insertAdjacentHTML(
-      "beforeend",
-      `<div class='documentContainer' style="width: 100%;"></div>`,
+      'beforeend',
+      `<div class='documentContainer' style="width: 100%;"></div>`
     );
-    const folderBlockCopy = document.querySelector(".documentContainer");
+    const folderBlockCopy = document.querySelector('.documentContainer');
     const dataFilter = data.folderDocument;
     dataFilter.forEach((el) => {
       folderBlockCopy.insertAdjacentHTML(
-        "beforeend",
+        'beforeend',
         `
                 <a id='${el.id}' class='documentFon' href="${el.source}">
+                
                     <img src="${el.img}">
+                    <div class="documentFon-mask">
                     <span>${el.title}</span>
+                    </div>
                 </a>
-            `,
+            `
       );
     });
     new SimpleBar(folderBlockCopy);
@@ -115,79 +137,52 @@ deleteBtn.addEventListener("click", (event) => {
 
 data.folderDocument.forEach((el) => {
   folderBlock.insertAdjacentHTML(
-    "beforeend",
+    'beforeend',
     `
         <a id='${el.id}' class='documentFon' href="${el.source}">
             <img src="${el.img}">
+            <div class="documentFon-mask">
             <span>${el.title}</span>
+            </div>
         </a>
-    `,
+    `
   );
 });
 new SimpleBar(folderBlock);
-//
 
-// document.querySelectorAll('.documentFon').forEach((item, index) => {
-//     item.addEventListener('click', event => {
-//         localStorage.setItem('documentFolder', JSON.stringify(data.folderDocument[event.target.id]))
-//         localStorage.setItem('idDocumentFolder', index)
-//     });
-// });
-
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = 1;
 });
-// document.querySelectorAll(".documentFon").forEach((link, index) => {
-//     link.addEventListener("click", event => {
-//         event.preventDefault();
-//         //document.body.style.opacity = 0;
-//         localStorage.setItem('documentFolder', JSON.stringify(data.folderDocument[index]))
-//         localStorage.setItem('idDocumentFolder', index)
-//         // setTimeout(() => {
-//         //     localStorage.setItem('documentFolder', JSON.stringify(data.folderDocument[index]))
-//         //     localStorage.setItem('idDocumentFolder', index)
-//         //     window.location.href = link.href; // Переход на новую страницу
-//         // }, 500);
-//     });
-// });
-document.querySelector(".init").addEventListener("click", (event) => {
-  let link = event.target.closest(".documentFon");
-  let linkTwo = event.target.closest(".documentFonSpan");
-  let linkThree = event.target.closest(".documentFonImg");
+
+document.querySelector('.init').addEventListener('click', (event) => {
+  let link = event.target.closest('.documentFon');
+  let linkTwo = event.target.closest('.documentFonSpan');
+  let linkThree = event.target.closest('.documentFonImg');
   if (!link && !linkTwo && !linkThree) {
     return;
-  } else {
-    console.log("Клик был на одном из элементов");
   }
+
   event.preventDefault();
-  console.log(11);
   if (flagKeyboard === true) {
-    console.log("хуй1111");
-    console.log(link);
-    console.log(link.id);
     localStorage.setItem(
-      "documentFolder",
-      JSON.stringify(data.folderDocument[link.id]),
+      'documentFolder',
+      JSON.stringify(data.folderDocument[link.id])
     );
-    localStorage.setItem("idDocumentFolder", JSON.stringify(link.id));
+    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
     document.body.style.opacity = 0;
   } else if (flagKeyboard === false && !linkThree) {
-    console.log(linkTwo);
-    console.log(linkTwo.id);
     localStorage.setItem(
-      "documentFolder",
-      JSON.stringify(data.folderDocument[linkTwo.id]),
+      'documentFolder',
+      JSON.stringify(data.folderDocument[linkTwo.id])
     );
-    localStorage.setItem("idDocumentFolder", JSON.stringify(link.id));
+    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
     document.body.style.opacity = 0;
   } else {
-    console.log(linkThree);
-    console.log(linkThree.id);
     localStorage.setItem(
-      "documentFolder",
-      JSON.stringify(data.folderDocument[linkThree.id]),
+      'documentFolder',
+      JSON.stringify(data.folderDocument[linkThree.id])
     );
-    localStorage.setItem("idDocumentFolder", JSON.stringify(link.id));
+    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
     document.body.style.opacity = 0;
   }
 
@@ -196,27 +191,27 @@ document.querySelector(".init").addEventListener("click", (event) => {
   }, 500);
 });
 
-document.querySelector(".exit").addEventListener("click", (event) => {
+document.querySelector('.exit').addEventListener('click', (event) => {
   event.preventDefault();
   document.body.style.opacity = 0;
   setTimeout(() => {
-    window.location.href = "../main/main.html";
+    window.location.href = '../main/main.html';
   }, 500);
 });
 
-document.querySelector(".search").addEventListener("click", (event) => {
-  fonElement.style.display = "block";
-  container.style.display = "block";
-  const keyboard = document.querySelector(".keyboard");
+document.querySelector('.search').addEventListener('click', (event) => {
+  fonElement.style.display = 'block';
+  container.style.display = 'block';
+  const keyboard = document.querySelector('.keyboard');
   const isOpen = parseInt(window.getComputedStyle(keyboard).bottom) < 0;
   animateKeyboard(isOpen);
 });
 
 function animateKeyboard(open) {
-  const keyboard = document.querySelector(".keyboard");
+  const keyboard = document.querySelector('.keyboard');
   let start = open ? -505 : 25;
   let end = open ? 25 : -505;
-  let duration = 500; // Время анимации в миллисекундах
+  let duration = 500;
   let startTime = null;
 
   function step(currentTime) {
@@ -225,7 +220,7 @@ function animateKeyboard(open) {
 
     if (progress > 1) progress = 1;
 
-    keyboard.style.bottom = start + (end - start) * progress + "px";
+    keyboard.style.bottom = start + (end - start) * progress + 'px';
 
     if (progress < 1) {
       requestAnimationFrame(step);
@@ -236,8 +231,8 @@ function animateKeyboard(open) {
 }
 
 document
-  .querySelector(".simplebar-scrollbar")
-  .addEventListener("click", (e) => {
+  .querySelector('.simplebar-scrollbar')
+  .addEventListener('click', (e) => {
     console.log(1000);
   });
 
@@ -247,17 +242,14 @@ let timeout;
 function resetTimer() {
   clearTimeout(timeout);
   timeout = setTimeout(() => {
-    window.location.href = "../main/main.html";
+    window.location.href = '../main/main.html';
   }, inactivityTime);
 }
 
-// Запуск таймера при загрузке страницы
-document.addEventListener("DOMContentLoaded", resetTimer);
+ document.addEventListener('DOMContentLoaded', resetTimer);
 
-// Сброс таймера при взаимодействии пользователя (нажатия, движения, скроллы)
-["click", "mousemove", "keypress", "touchstart", "scroll"].forEach((event) => {
-  console.log(2);
+ ['click', 'mousemove', 'keypress', 'touchstart', 'scroll'].forEach((event) => {
   document.addEventListener(event, resetTimer);
 });
 
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+document.addEventListener('contextmenu', (event) => event.preventDefault());
