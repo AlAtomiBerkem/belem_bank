@@ -19,13 +19,13 @@ html,
 body {
   width: 1920px;
   height: 1080px;
-  overflow-x: hidden; /* Отключает горизонтальную прокрутку */
-  touch-action: pan-y; /* Разрешает только вертикальную прокрутку */
-  max-width: 100vw; /* Ограничивает ширину вьюпорта */
-  position: fixed; /* Убирает "дрожание" страницы */
+  overflow-x: hidden; 
+  touch-action: pan-y; 
+  max-width: 100vw; 
+  position: fixed;  
 }
-/* Define the styles for the unloaded pages */
-html.is-animating .transition-fade {
+
+ html.is-animating .transition-fade {
   opacity: 0;
 }
 * {
@@ -183,10 +183,14 @@ body {
 }
 
 .documentFon-mask {
+  overflow: hidden;
   white-space: nowrap;
   width: 1465px;
-  mask-image: linear-gradient(to right, black 85%, transparent 95%);
-   overflow: hidden;
+  mask-image: 
+    linear-gradient(to left, black 98.5%, transparent 99%),
+    linear-gradient(to right, black 85%, transparent 95%);
+
+  mask-composite: intersect;
 }
 
 .documentFon-mask span {
