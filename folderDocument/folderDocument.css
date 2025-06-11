@@ -1,10 +1,3 @@
-/* * {
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-} */
 @font-face {
   font-family: 'Nunito';
   src:
@@ -66,7 +59,6 @@ body {
   opacity: 1;
 }
 
-/* Когда добавляется класс fade-out, страница исчезает */
 .fade-out {
   opacity: 0;
 }
@@ -176,14 +168,7 @@ body {
   color: white;
 }
 .documentContainer {
-  /* display: grid;
-    grid-template-columns: 16% 16% 16% 16% 16%;
-    justify-content: center;
-    align-items: center;
-    overflow: auto; */
   height: 678px;
-  /* max-width: 800px; */
-  /* margin: 0 auto; */
 }
 .documentFon {
   width: 1468px;
@@ -206,17 +191,44 @@ body {
   text-decoration-skip-ink: none;
   font-family: 'Nunito', sans-serif;
 }
+
 .documentFon img {
   width: 53px;
   height: 64px;
-  padding: 14px 0 15px 24px;
+  margin-left: 30px;
+  padding-top: 15px;
+  padding-bottom: 8px;
+
 }
 .documentFon span {
   color: #ffffff;
   padding-left: 20px;
-  width: 1402px;
-  padding-top: 18px;
-  padding-bottom: 16px;
+}
+ 
+
+.documentFon-mask {
+  white-space: nowrap;
+  width: 1465px;
+  mask-image: linear-gradient(to right, black 85%, transparent 95%);
+   overflow: hidden;
+}
+
+.documentFon-mask span {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 20px;
+  color: white;
+  
+   animation: scrollText 10s linear infinite alternate;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(1400px - 100%));
+  }
 }
 .footer {
   margin-top: 28px;

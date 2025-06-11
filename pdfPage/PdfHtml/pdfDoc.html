@@ -40,8 +40,7 @@
     <script>
       const data = JSON.parse(localStorage.getItem('documentFolder'));
       const dataNumber = JSON.parse(localStorage.getItem('idDocumentFolder'));
-      console.log(data.documents[Number(dataNumber)].file);
-      const pdfUrl = `${data.documents[Number(dataNumber)].file}`;
+       const pdfUrl = `${data.documents[Number(dataNumber)].file}`;
       const container = document.getElementById('pdf-container');
       const loadingText = document.getElementById('loading-text'); // Элемент с текстом "Загрузка"
 
@@ -77,8 +76,7 @@
           new SimpleBar(container);
           document.querySelector('.gifLoading').style.opacity = 0;
           setTimeout(() => {
-            console.log(1);
-            document.querySelector('.gifLoading').style.display = 'none';
+             document.querySelector('.gifLoading').style.display = 'none';
             document.querySelector('.info').style.opacity = 1;
             document.querySelector('.info').style.display = 'block';
           }, 250);
@@ -88,8 +86,7 @@
           console.error('Ошибка при загрузке PDF: ', err);
           document.querySelector('.gifLoading').style.opacity = 0;
           setTimeout(() => {
-            console.log(1);
-            document.querySelector('.gifLoading').style.display = 'none';
+             document.querySelector('.gifLoading').style.display = 'none';
             document.querySelector('.info').style.opacity = 1;
             document.querySelector('.info').style.display = 'block';
           }, 250);
