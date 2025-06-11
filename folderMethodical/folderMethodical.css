@@ -179,11 +179,7 @@ body {
 }
 
 .documentFon img {
-  width: 53px;
-  height: 64px;
   margin-left: 30px;
-  padding-top: 15px;
-  padding-bottom: 8px;
 
 }
 .documentFon span {
@@ -193,10 +189,13 @@ body {
  
 
 .documentFon-mask {
+  overflow: hidden;
   white-space: nowrap;
   width: 1465px;
-  mask-image: linear-gradient(to right, black 85%, transparent 95%);
-   overflow: hidden;
+  mask-image: 
+    linear-gradient(to left, black 98.5%, transparent 99%),
+    linear-gradient(to right, black 85%, transparent 95%);
+  mask-composite: intersect;
 }
 
 .documentFon-mask span {
