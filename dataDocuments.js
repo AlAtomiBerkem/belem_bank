@@ -11,7 +11,7 @@ const documents = {
           idFolderDocument: 0,
           id: 0,
           title:
-            'Документ 1 это первый документ, не сказать что это важно, но все же!',
+            'Документ 1 это первый документ, не сказать что это важно, но все же! еще',
           source: '../pdfPage/PdfHtml/pdfDoc.html',
           img: './img/documentLogo.png',
           file: '../../pdfDoc/Перечень_изменений_по_стенду_ИС_Книжная_полка.pdf'

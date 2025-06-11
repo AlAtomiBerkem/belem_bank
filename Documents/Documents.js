@@ -8,11 +8,25 @@ const keyboardBtns = document.querySelectorAll('.btn');
 const deleteBtn = document.querySelector('.delete');
 const fonElement = document.querySelector('.fon');
 
-const spanElement = document.querySelectorAll('documentFon-mask>span');
-spanElement.forEach(span => {
-    console.log('проверяем span')
-    console.log(span.textContent)
-})
+console.log('находимся в файле documents html');
+
+
+const observer = new MutationObserver(() => {
+  const spans = document.querySelectorAll('.documentFon-mask > span');
+  
+  spans.forEach(span => {
+    const textLength = span.textContent.length;
+    const maxVisibleChars = 72;
+    
+    if (textLength > maxVisibleChars) {
+      span.style.animation = 'scrollText 10s linear infinite alternate';
+    } else {
+      span.style.animation = 'none';
+    }
+  });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
 
 const para = document.createElement('span');
 const node = document.createTextNode(`${data.title}`);
@@ -47,7 +61,7 @@ keyboardBtns.forEach((button) => {
         'beforeend',
         `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png">
+                    <img src="./img/documentLogo.png">
                     <div class="documentFon-mask">
                     <span>${el.title}</span>
                     </div>
@@ -77,7 +91,7 @@ deleteBtn.addEventListener('click', (event) => {
         'beforeend',
         `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png">
+                    <img src="./img/documentLogo.png">
                     <div class="documentFon-mask">
                     <span>${el.title}</span>
                     </div>
@@ -94,7 +108,7 @@ deleteBtn.addEventListener('click', (event) => {
         'beforeend',
         `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png">
+                    <img src="./img/documentLogo.png">
                     <div class="documentFon-mask">
                     <span>${el.title}</span>
                     </div>
@@ -111,7 +125,7 @@ data.documents.forEach((el) => {
     'beforeend',
     `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png">
+                    <img src="./img/documentLogo.png">
                     <div class="documentFon-mask">
                     <span>${el.title}</span>
                     </div>
@@ -121,6 +135,7 @@ data.documents.forEach((el) => {
 });
 new SimpleBar(folderBlock);
 
+console.log(data); // Проверьте, что объект существует
 document.body.oncontextmenu = function (e) {
   return false;
 };
@@ -161,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.querySelector('.init').addEventListener('click', (event) => {
-  let link = event.target.closest('.documentFon'); 
+  let link = event.target.closest('.documentFon');
   if (!link) {
     return;
   } else {
@@ -170,7 +185,7 @@ document.querySelector('.init').addEventListener('click', (event) => {
   localStorage.setItem('idDocumentFolder', link.id);
   document.body.style.opacity = 0;
   setTimeout(() => {
-    window.location.href = '../pdfPage/PdfHtml/pdfDoc.html'; 
+    window.location.href = '../pdfPage/PdfHtml/pdfDoc.html';
   }, 500);
 });
 
@@ -178,7 +193,7 @@ document.querySelector('.exit').addEventListener('click', (event) => {
   event.preventDefault();
   document.body.style.opacity = 0;
   setTimeout(() => {
-    window.location.href = '../folderDocument/folderDocument.html'; 
+    window.location.href = '../folderDocument/folderDocument.html';
   }, 500);
 });
 

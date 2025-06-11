@@ -15,6 +15,25 @@ para.appendChild(node);
 const element = document.querySelector('.text-path');
 element.appendChild(para);
 
+console.log('мы находимся на странице documentMethodical.html')
+
+const observer = new MutationObserver(() => {
+  const spans = document.querySelectorAll('.documentFon-mask > span');
+  
+  spans.forEach(span => {
+    const textLength = span.textContent.length;
+    const maxVisibleChars = 72;
+    
+    if (textLength > maxVisibleChars) {
+      span.style.animation = 'scrollText 10s linear infinite alternate';
+    } else {
+      span.style.animation = 'none';
+    }
+  });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
 function getFile(word, stations) {
   return stations.filter((s) => {
     const regex = new RegExp(word, 'gi');
@@ -44,8 +63,10 @@ keyboardBtns.forEach((button) => {
         'beforeend',
         `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png"">
+                    <img src="./img/documentLogo.png"">
+                     <div class="documentFon-mask">
                     <span>${el.title}</span>
+                    </div>
                 </div>
             `
       );
@@ -72,9 +93,9 @@ deleteBtn.addEventListener('click', (event) => {
         'beforeend',
         `
       <a id='${el.id}' class='documentFon' href="${el.source}">
-        <img class="documentFonImg" id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
-        <div class="documentFon-mask">  <!-- Исправлено здесь -->
-          <span class='documentFonSpan' id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
+        <img id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
+        <div class="documentFon-mask">
+          <span id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
         </div>
       </a>
       `
@@ -89,8 +110,10 @@ deleteBtn.addEventListener('click', (event) => {
         'beforeend',
         `
                 <div id='${el.id}' class='documentFon'>
-                    <img src="./img/folder.png">
+                    <img src="./img/documentLogo.png">
+                     <div class="documentFon-mask">
                     <span>${el.title}</span>
+                    </div>
                 </div>
             `
       );
@@ -106,27 +129,19 @@ data.documents.forEach((el) => {
     `
         <div id='${el.id}' class='documentFon'>
             <img src="./img/documentLogo.png">
+             <div class="documentFon-mask">
             <span>${el.title}</span>
+            </div>
         </div>
     `
   );
 });
 new SimpleBar(folderBlock);
-//
-
-// document.querySelectorAll('.documentFon').forEach(item => {
-//     item.addEventListener('click', event => {
-//         localStorage.setItem('idDocumentFolder', event.target.id)
-//     });
-// });
 
 document.body.oncontextmenu = function (e) {
   return false;
 };
 
-// document.querySelector('.buttonsBack').addEventListener('click', event => {
-//     // event.preventDefault();
-// })
 document.querySelector('.search').addEventListener('click', (event) => {
   fonElement.style.display = 'block';
   container.style.display = 'block';
@@ -139,7 +154,7 @@ function animateKeyboard(open) {
   const keyboard = document.querySelector('.keyboard');
   let start = open ? -505 : 25;
   let end = open ? 25 : -505;
-  let duration = 500; // Время анимации в миллисекундах
+  let duration = 500;
   let startTime = null;
 
   function step(currentTime) {
@@ -163,16 +178,6 @@ console.log(data);
 document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = 1;
 });
-// document.querySelectorAll(".documentFon").forEach((link, index) => {
-//     link.addEventListener("click", event => {
-//         event.preventDefault();
-//         document.body.style.opacity = 0;
-//         localStorage.setItem('idDocumentFolder', index)
-//         setTimeout(() => {
-//             window.location.href = data.documents[link.id].source; // Переход на новую страницу
-//         }, 500);
-//     });
-// });
 
 document.querySelector('.init').addEventListener('click', (event) => {
   let link = event.target.closest('.documentFon');
@@ -195,11 +200,11 @@ document.querySelector('.exit').addEventListener('click', (event) => {
   event.preventDefault();
   document.body.style.opacity = 0;
   setTimeout(() => {
-    window.location.href = '../folderMethodical/folderMethodical.html'; // Переход на новую страницу
+    window.location.href = '../folderMethodical/folderMethodical.html';
   }, 500);
 });
 
-let inactivityTime = 180000; // 3 минуты (в миллисекундах)
+let inactivityTime = 180000; 
 let timeout;
 
 function resetTimer() {
@@ -209,10 +214,8 @@ function resetTimer() {
   }, inactivityTime);
 }
 
-// Запуск таймера при загрузке страницы
 document.addEventListener('DOMContentLoaded', resetTimer);
 
-// Сброс таймера при взаимодействии пользователя (нажатия, движения, скроллы)
 ['click', 'mousemove', 'keypress', 'touchstart', 'scroll'].forEach((event) => {
   console.log(2);
   document.addEventListener(event, resetTimer);

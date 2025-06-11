@@ -1,5 +1,4 @@
 const data = JSON.parse(localStorage.getItem('documents'));
-console.log(data);
 const folderBlock = document.querySelector('.documentContainer');
 const folderTitle = document.createElement('div');
 const container = document.querySelector('.container');
@@ -11,12 +10,36 @@ const fonElement = document.querySelector('.fon');
 const fullTitle = [];
 let flagKeyboard = true;
 data.folderMethodical.forEach((el) => {
-  console.log(el);
   fullTitle.push(el);
   el.documents.forEach((element) => {
     fullTitle.push(element);
   });
 });
+
+
+console.log('мы находимся на странице folderMethodical.html')
+
+const observer = new MutationObserver(() => {
+  const spans = document.querySelectorAll('.documentFon-mask > span');
+  
+  spans.forEach(span => {
+    const textLength = span.textContent.length;
+    const maxVisibleChars = 72;
+    console.log(textLength)
+    
+    if (textLength > maxVisibleChars) {
+      span.style.animation = 'scrollText 10s linear infinite alternate';
+      console.log('работает')
+    } else {
+      console.log('не работатет')
+      span.style.animation = 'none';
+    }
+  });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
+
 
 function getFile(word, stations) {
   return stations.filter((s) => {
@@ -25,9 +48,6 @@ function getFile(word, stations) {
   });
 }
 
-inputSearch.addEventListener('change', (event) => {
-  console.log(getFile(inputSearch.value, data.folderMethodical));
-});
 keyboardBtns.forEach((button) => {
   button.addEventListener('click', (event) => {
     flagKeyboard = false;
@@ -48,9 +68,9 @@ keyboardBtns.forEach((button) => {
         'beforeend',
         `
       <a id='${el.id}' class='documentFon' href="${el.source}">
-        <img class="documentFonImg" id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
-        <div class="documentFon-mask">  <!-- Исправлено здесь -->
-          <span class='documentFonSpan' id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
+        <img id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
+        <div class="documentFon-mask">
+          <span id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
         </div>
       </a>
       `
@@ -79,9 +99,9 @@ deleteBtn.addEventListener('click', (event) => {
         'beforeend',
         `
       <a id='${el.id}' class='documentFon' href="${el.source}">
-        <img class="documentFonImg" id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
-        <div class="documentFon-mask">  <!-- Исправлено здесь -->
-          <span class='documentFonSpan' id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
+        <img id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}' src="${el.img}">
+        <div class="documentFon-mask">
+          <span id='${el.idFolderDocument === undefined ? el.id : el.idFolderDocument}'>${el.title}</span>
         </div>
       </a>
       `
@@ -108,7 +128,9 @@ deleteBtn.addEventListener('click', (event) => {
         `
                 <a id='${el.id}' class='documentFon' href="${el.source}">
                     <img src="${el.img}">
+                    <div class="documentFon-mask">
                     <span>${el.title}</span>
+                    </div>
                 </a>
             `
       );
@@ -123,13 +145,15 @@ data.folderMethodical.forEach((el) => {
     `
         <a id='${el.id}' class='documentFon' href="${el.source}">
             <img src="${el.img}">
+            <div class="documentFon-mask">
             <span>${el.title}</span>
+            </div>
         </a>
     `
   );
 });
 new SimpleBar(folderBlock);
-//
+
 document.querySelectorAll('.documentFon').forEach((item) => {
   item.addEventListener('click', (event) => {
     localStorage.setItem(
@@ -143,29 +167,17 @@ document.querySelectorAll('.documentFon').forEach((item) => {
 document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = 1;
 });
-// document.querySelectorAll(".documentFon").forEach((link, index) => {
-//     console.log(data.folderMethodical[index])
-//     link.addEventListener("click", event => {
-//         event.preventDefault();
-//         document.body.style.opacity = 0;
-//         localStorage.setItem('idDocumentFolder', index)
-//         setTimeout(() => {
-//             window.location.href = data.folderMethodical[index].source;
-//         }, 500);
-//     });
-// });
+
 document.querySelector('.init').addEventListener('click', (event) => {
   let link = event.target.closest('.documentFon');
   let linkTwo = event.target.closest('.documentFonSpan');
   let linkThree = event.target.closest('.documentFonImg');
   if (!link && !linkTwo && !linkThree) {
     return;
-  } else {
-    console.log('Клик был на одном из элементов');
   }
+
   event.preventDefault();
   if (flagKeyboard === true) {
-    console.log('хуй1111');
     localStorage.setItem(
       'documentFolder',
       JSON.stringify(data.folderMethodical[link.id])
@@ -173,7 +185,6 @@ document.querySelector('.init').addEventListener('click', (event) => {
     localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
     document.body.style.opacity = 0;
   } else if (flagKeyboard === false && !linkThree) {
-    console.log('хуй22222');
     localStorage.setItem(
       'documentFolder',
       JSON.stringify(data.folderMethodical[linkTwo.id])
@@ -192,19 +203,6 @@ document.querySelector('.init').addEventListener('click', (event) => {
     window.location.href = link.href;
   }, 500);
 });
-// document.querySelector(".init").addEventListener("click", event => {
-//     let link = event.target.closest(".documentFon"); // Проверяем, был ли клик внутри .documentFon
-//     if (!link) return; // Если клик был не по нужному элементу, выходим
-
-//     event.preventDefault();
-//     //document.body.style.opacity = 0;
-//     localStorage.setItem('documentFolder', JSON.stringify(data.folderDocument[event.target.id]))
-//     localStorage.setItem('idDocumentFolder', event.target.id)
-
-//     setTimeout(() => {
-//         window.location.href = link.href; // Переход на новую страницу
-//     }, 500);
-// });
 
 document.querySelector('.exit').addEventListener('click', (event) => {
   event.preventDefault();
@@ -245,16 +243,6 @@ function animateKeyboard(open) {
   requestAnimationFrame(step);
 }
 
-document.body.addEventListener('click', (e) => {
-  console.log(e.target);
-});
-
-document
-  .querySelector('.simplebar-scrollbar')
-  .addEventListener('click', (e) => {
-    console.log(1000);
-  });
-
 let inactivityTime = 180000; // 3 минуты (в миллисекундах)
 let timeout;
 
@@ -270,7 +258,6 @@ document.addEventListener('DOMContentLoaded', resetTimer);
 
 // Сброс таймера при взаимодействии пользователя (нажатия, движения, скроллы)
 ['click', 'mousemove', 'keypress', 'touchstart', 'scroll'].forEach((event) => {
-  console.log(2);
   document.addEventListener(event, resetTimer);
 });
 
