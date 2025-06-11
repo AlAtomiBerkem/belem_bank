@@ -1,18 +1,18 @@
 let closeLoading = false;
 console.log(data);
-const para = document.createElement("span");
+const para = document.createElement('span');
 const node = document.createTextNode(`${data.title}`);
 para.appendChild(node);
-const element = document.querySelector(".header-info-path");
+const element = document.querySelector('.header-info-path');
 element.appendChild(para);
-const block = document.querySelector(".header-title");
+const block = document.querySelector('.header-title');
 block.textContent = `${data.documents[dataNumber].title}`;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = 1;
 });
 
-document.querySelector(".exit").addEventListener("click", (e) => {
+document.querySelector('.exit').addEventListener('click', (e) => {
   e.preventDefault();
   document.body.style.opacity = 0;
   console.log(e.target.href);
@@ -28,15 +28,15 @@ let timeout;
 function resetTimer() {
   clearTimeout(timeout);
   timeout = setTimeout(() => {
-    window.location.href = "../../main/main.html";
+    window.location.href = '../../main/main.html';
   }, inactivityTime);
 }
 
-document.addEventListener("DOMContentLoaded", resetTimer);
+document.addEventListener('DOMContentLoaded', resetTimer);
 
-["click", "mousemove", "keypress", "touchstart", "scroll"].forEach((event) => {
+['click', 'mousemove', 'keypress', 'touchstart', 'scroll'].forEach((event) => {
   console.log(2);
   document.addEventListener(event, resetTimer);
 });
 
-document.addEventListener("contextmenu", (event) => event.preventDefault());
+document.addEventListener('contextmenu', (event) => event.preventDefault());

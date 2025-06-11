@@ -45,11 +45,11 @@
 
     <script src="../simplebar.js"></script>
     <script>
-      const data = JSON.parse(localStorage.getItem("documentFolder"));
-      const dataNumber = JSON.parse(localStorage.getItem("idDocumentFolder"));
+      const data = JSON.parse(localStorage.getItem('documentFolder'));
+      const dataNumber = JSON.parse(localStorage.getItem('idDocumentFolder'));
       const pdfUrl = `${data.documents[Number(dataNumber)].file}`;
-      const container = document.getElementById("pdf-container");
-      const loadingText = document.getElementById("loading-text");
+      const container = document.getElementById('pdf-container');
+      const loadingText = document.getElementById('loading-text');
 
       // Load PDF document
       pdfjsLib
@@ -60,18 +60,20 @@
           for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
             promises.push(
               pdfDoc.getPage(pageNum).then((page) => {
-                const viewport = page.getViewport({ scale: 2.3 });
-                const canvas = document.createElement("canvas");
+                const viewport = page.getViewport({
+                  scale: 2.3
+                });
+                const canvas = document.createElement('canvas');
                 container.appendChild(canvas);
                 canvas.width = viewport.width;
                 canvas.height = viewport.height;
 
                 const renderContext = {
-                  canvasContext: canvas.getContext("2d"),
-                  viewport: viewport,
+                  canvasContext: canvas.getContext('2d'),
+                  viewport: viewport
                 };
                 return page.render(renderContext).promise;
-              }),
+              })
             );
           }
 
@@ -79,25 +81,23 @@
         })
         .then(() => {
           new SimpleBar(container);
-          document.querySelector(".gifLoading").style.opacity = 0;
+          document.querySelector('.gifLoading').style.opacity = 0;
           setTimeout(() => {
-            console.log(1);
-            document.querySelector(".gifLoading").style.display = "none";
-            document.querySelector(".info").style.opacity = 1;
-            document.querySelector(".info").style.display = "block";
+             document.querySelector('.gifLoading').style.display = 'none';
+            document.querySelector('.info').style.opacity = 1;
+            document.querySelector('.info').style.display = 'block';
           }, 250);
-          console.log("PDF загружен успешно");
+          console.log('PDF загружен успешно');
         })
         .catch((err) => {
-          console.error("Ошибка при загрузке PDF: ", err);
-          document.querySelector(".gifLoading").style.opacity = 0;
+          console.error('Ошибка при загрузке PDF: ', err);
+          document.querySelector('.gifLoading').style.opacity = 0;
           setTimeout(() => {
-            console.log(1);
-            document.querySelector(".gifLoading").style.display = "none";
-            document.querySelector(".info").style.opacity = 1;
-            document.querySelector(".info").style.display = "block";
+             document.querySelector('.gifLoading').style.display = 'none';
+            document.querySelector('.info').style.opacity = 1;
+            document.querySelector('.info').style.display = 'block';
           }, 250);
-          loadingText.textContent = "Ошибка при загрузке";
+          loadingText.textContent = 'Ошибка при загрузке';
         });
     </script>
     <script src="../simplebar.js"></script>

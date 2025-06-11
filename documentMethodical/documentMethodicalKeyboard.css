@@ -20,10 +20,10 @@ html.is-animating .transition-fade {
 }
 
 @font-face {
-  font-family: "Nunito";
+  font-family: 'Nunito';
   src:
-    local("Nunito"),
-    url("/Fonts/Nunito-VariableFont_wght.ttf") format("truetype");
+    local('Nunito'),
+    url('/Fonts/Nunito-VariableFont_wght.ttf') format('truetype');
 }
 
 /* SUBSCRIBE ==> https://www.youtube.com/albdev */
@@ -49,7 +49,7 @@ html.is-animating .transition-fade {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   border-radius: 38px;
   border: solid 5px #f4d3ad;
 }
@@ -74,7 +74,7 @@ button:active {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   border: none;
 }
 .rowStart {
