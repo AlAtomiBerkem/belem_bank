@@ -82,10 +82,8 @@
             document.querySelector('.info').style.opacity = 1;
             document.querySelector('.info').style.display = 'block';
           }, 250);
-          console.log('PDF загружен успешно');
         })
         .catch((err) => {
-          console.error('Ошибка при загрузке PDF: ', err);
           document.querySelector('.gifLoading').style.opacity = 0;
           setTimeout(() => {
              document.querySelector('.gifLoading').style.display = 'none';
