@@ -1,14 +1,11 @@
-/* * {
+* {
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-} */
-html.is-changing .transition-fade {
-  transition: opacity 0.25s;
-  opacity: 1;
 }
+
 /* Define the styles for the unloaded pages */
 html.is-animating .transition-fade {
   opacity: 0;
@@ -132,12 +129,13 @@ html.is-animating .transition-fade {
   position: absolute;
   right: 0;
   bottom: 0;
-  pointer-events: none;
+  pointer-events: auto;
+  /* отключили этот стиль и пошла движуха в виде того что начали появлятся ошибки при перетаскиваниии DocumentsSimplebar.js:2618  Unable to preventDefault inside passive event listener invocation. и по нажатию скрол начал двигатся  */ 
   overflow: hidden;
 }
 
 [data-simplebar].simplebar-dragging .simplebar-content {
-  pointer-events: none;
+  pointer-events: auto;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -166,9 +164,7 @@ html.is-animating .transition-fade {
 }
 
 .simplebar-scrollbar.simplebar-visible:before {
-  /* When hovered, remove all transitions from drag handle */
-  /* opacity: 0.5;
-  transition: opacity 0s linear; */
+  transition: opacity 0s linear;
 }
 
 .simplebar-track.simplebar-vertical {

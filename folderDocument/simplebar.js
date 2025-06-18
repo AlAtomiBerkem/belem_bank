@@ -2865,12 +2865,7 @@
           ['mousedown', 'click', 'dblclick'].forEach(function (e) {
             t.el.addEventListener(e, t.onPointerEvent, !0);
           }),
-          ['touchstart', 'touchend', 'touchmove'].forEach(function (e) {
-            t.el.addEventListener(e, t.onPointerEvent, {
-              capture: !0,
-              passive: !0
-            });
-          }),
+
           this.el.addEventListener('mousemove', this.onMouseMove),
           this.el.addEventListener('mouseleave', this.onMouseLeave),
           this.contentWrapperEl.addEventListener('scroll', this.onScroll),

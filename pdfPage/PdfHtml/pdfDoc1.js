@@ -1,5 +1,4 @@
 let closeLoading = false;
-console.log(data);
 const para = document.createElement('span');
 const node = document.createTextNode(`${data.title}`);
 para.appendChild(node);
@@ -15,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelector('.exit').addEventListener('click', (e) => {
   e.preventDefault();
   document.body.style.opacity = 0;
-  console.log(e.target.href);
-  console.log(10);
   setTimeout(() => {
     window.location.href = e.target.href;
   }, 500);
@@ -35,7 +32,6 @@ function resetTimer() {
 document.addEventListener('DOMContentLoaded', resetTimer);
 
 ['click', 'mousemove', 'keypress', 'touchstart', 'scroll'].forEach((event) => {
-  console.log(2);
   document.addEventListener(event, resetTimer);
 });
 
