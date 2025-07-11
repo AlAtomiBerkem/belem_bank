@@ -95,6 +95,18 @@ function renderDocuments(docs) {
     );
   });
   new SimpleBar(folderBlock);
+  // Навешиваем обработчик клика на каждый документ
+  document.querySelectorAll('.documentFon').forEach(docEl => {
+    docEl.addEventListener('click', function(event) {
+      event.preventDefault();
+      localStorage.setItem('documentFolder', JSON.stringify({ documents: docs }));
+      localStorage.setItem('idDocumentFolder', docEl.id);
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = '../pdfPage/PdfHtml/pdfDoc.html';
+      }, 500);
+    });
+  });
 }
 
 // Поиск по документам
@@ -245,20 +257,6 @@ function animateKeyboard(open) {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = 1;
-});
-
-document.querySelector('.init').addEventListener('click', (event) => {
-  let link = event.target.closest('.documentFon');
-  if (!link) {
-    return;
-  } else {
-  }
-  event.preventDefault();
-  localStorage.setItem('idDocumentFolder', link.id);
-  document.body.style.opacity = 0;
-  setTimeout(() => {
-    window.location.href = '../pdfPage/PdfHtml/pdfDoc.html';
-  }, 500);
 });
 
 document.querySelector('.exit').addEventListener('click', (event) => {
