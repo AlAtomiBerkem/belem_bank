@@ -37,10 +37,11 @@
   body {
     width: 1920px;
     height: 1080px;
-    overflow-x: hidden; /* Отключает горизонтальную прокрутку */
-    touch-action: pan-y; /* Разрешает только вертикальную прокрутку */
-    max-width: 100vw; /* Ограничивает ширину вьюпорта */
-    position: fixed; /* Убирает "дрожание" страницы */
+    overflow: hidden !important;
+    position: fixed;
+    overscroll-behavior: none;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   /* Define the styles for the unloaded pages */
   html.is-animating .transition-fade {
@@ -51,7 +52,7 @@
   }
   body {
     /* background-image: url('./img/BackgroundWhite.png'); */
-    opacity: 0;
+    background: #fff;
     transition: opacity 0.5s ease-in-out;
   }
   .documentBackground {
@@ -120,6 +121,14 @@
     font-family: 'Nunito', sans-serif;
     margin-right: 25px;
   }
+  .text-path .slash {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 35px;
+    color: #b0c4bf;
+    font-weight: 600;
+    opacity: 0.7;
+  }
   .documentTitle h1 {
     font-size: 3vw;
     color: white;
@@ -168,7 +177,9 @@
     color: white;
   }
   .documentContainer {
-    height: 678px;
+    height: calc(100vh - 300px); /* фиксируем высоту контейнера, чтобы не было лишнего скролла */
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .documentFon {
     width: 1468px;
@@ -192,7 +203,7 @@
     font-family: 'Nunito', sans-serif;
   }
   .documentFon img {
-    width: 32px;
+    /* width: 32px; */
     height: 39px;
     margin-left: 30px;
   }
@@ -231,7 +242,8 @@
   }
   
   .footer {
-    margin-top: 28px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
   }
