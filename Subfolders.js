@@ -12,7 +12,7 @@ const errorBlock = document.getElementById('subfoldersError');
 
 // Формируем хлебные крошки
 if (breadcrumb && epoch) {
-  breadcrumb.innerHTML = `<span>Банк</span> / <span>${epoch}</span> / <span>Темы</span>`;
+  breadcrumb.innerHTML = `<span>Банк</span> <span>/</span> <span>Документы</span> <span>/</span> <span>${epoch}</span>`;
 }
 
 function showError(msg) {
