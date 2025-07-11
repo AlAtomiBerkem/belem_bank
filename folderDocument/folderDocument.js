@@ -1,4 +1,4 @@
-const data = JSON.parse(localStorage.getItem('documents'));
+const data = documents;
 const folderBlock = document.querySelector('.documentContainer');
 const folderTitle = document.createElement('div');
 const container = document.querySelector('.container');
@@ -9,11 +9,18 @@ const deleteBtn = document.querySelector('.delete');
 const fonElement = document.querySelector('.fon');
 const fullTitle = [];
 let flagKeyboard = true;
-data.folderDocument.forEach((el) => {
-  fullTitle.push(el);
-  el.documents.forEach((element) => {
-    fullTitle.push(element);
-  });
+data.folderDocument.forEach((folder) => {
+  fullTitle.push(folder);
+  if (folder.subfolders) {
+    folder.subfolders.forEach((subfolder) => {
+      fullTitle.push(subfolder);
+      if (subfolder.documents) {
+        subfolder.documents.forEach((doc) => {
+          fullTitle.push(doc);
+        });
+      }
+    });
+  }
 });
 console.log('мы находимся на странице folderDocument.html')
 const observer = new MutationObserver(() => {

@@ -1,4 +1,4 @@
-const data = JSON.parse(localStorage.getItem('documentFolder'));
+const data = documents;
 console.log(data.documents);
 const folderBlock = document.querySelector('.documentContainer');
 const folderTitle = document.createElement('div');
@@ -8,6 +8,21 @@ const cancelSearch = document.querySelector('.cancelSearch');
 const keyboardBtns = document.querySelectorAll('.btn');
 const deleteBtn = document.querySelector('.delete');
 const fonElement = document.querySelector('.fon');
+const fullTitle = [];
+let flagKeyboard = true;
+data.folderDocument.forEach((folder) => {
+  fullTitle.push(folder);
+  if (folder.subfolders) {
+    folder.subfolders.forEach((subfolder) => {
+      fullTitle.push(subfolder);
+      if (subfolder.documents) {
+        subfolder.documents.forEach((doc) => {
+          fullTitle.push(doc);
+        });
+      }
+    });
+  }
+});
 
 const para = document.createElement('span');
 const node = document.createTextNode(`${data.title}`);
