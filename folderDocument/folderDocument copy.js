@@ -137,7 +137,7 @@ document.querySelectorAll('.documentFon').forEach((item, index) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = 1;
+  // document.body.style.opacity = 1;
 });
 // document.querySelectorAll(".documentFon").forEach((link, index) => {
 //     link.addEventListener("click", event => {

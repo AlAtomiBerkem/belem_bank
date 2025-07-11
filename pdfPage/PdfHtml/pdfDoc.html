@@ -42,7 +42,7 @@
     <script>
       const data = JSON.parse(localStorage.getItem('documentFolder'));
       const dataNumber = JSON.parse(localStorage.getItem('idDocumentFolder'));
-       const pdfUrl = `${data.documents[Number(dataNumber)].file}`;
+      const pdfUrl = `../../${data.documents[Number(dataNumber)].file}`;
       const container = document.getElementById('pdf-container');
       const loadingText = document.getElementById('loading-text'); // Элемент с текстом "Загрузка"
 

@@ -1,4 +1,4 @@
-const data = JSON.parse(localStorage.getItem('documentFolder'));
+const data = documents;
 const folderBlock = document.querySelector('.documentContainer');
 const folderTitle = document.createElement('div');
 const container = document.querySelector('.container');
@@ -7,6 +7,22 @@ const cancelSearch = document.querySelector('.cancelSearch');
 const keyboardBtns = document.querySelectorAll('.btn');
 const deleteBtn = document.querySelector('.delete');
 const fonElement = document.querySelector('.fon');
+const fullTitle = [];
+let flagKeyboard = true;
+
+data.folderDocument.forEach((folder) => {
+  fullTitle.push(folder);
+  if (folder.subfolders) {
+    folder.subfolders.forEach((subfolder) => {
+      fullTitle.push(subfolder);
+      if (subfolder.documents) {
+        subfolder.documents.forEach((doc) => {
+          fullTitle.push(doc);
+        });
+      }
+    });
+  }
+});
 
 console.log('находимся в файле documents html');
 
@@ -34,6 +50,66 @@ para.appendChild(node);
 const element = document.querySelector('.text-path');
 element.appendChild(para);
 
+// Получаем параметры epoch и theme из URL
+function getQueryParam(name) {
+  const url = new URL(window.location.href);
+  return url.searchParams.get(name);
+}
+
+const epoch = getQueryParam('epoch');
+const theme = getQueryParam('theme');
+
+// Функция для поиска нужной эпохи и темы
+function getDocumentsForTheme(epoch, theme) {
+  if (!epoch || !theme) return [];
+  const folder = data.folderDocument.find(f => f.title === epoch);
+  if (!folder || !folder.subfolders) return [];
+  const subfolder = folder.subfolders.find(sf => sf.title === theme);
+  if (!subfolder || !subfolder.documents) return [];
+  return subfolder.documents;
+}
+
+// Обновляем хлебные крошки
+const breadcrumb = document.querySelector('.text-path');
+if (breadcrumb) {
+  breadcrumb.innerHTML = `<span>Банк</span> <span>/</span> <span>Документы</span> <span>/</span> <span>${epoch || ''}</span> <span>/</span> <span>${theme || ''}</span>`;
+}
+
+// Основной массив документов для отображения
+let currentDocuments = getDocumentsForTheme(epoch, theme);
+
+// Функция для рендера документов
+function renderDocuments(docs) {
+  folderBlock.innerHTML = '';
+  docs.forEach((el) => {
+    folderBlock.insertAdjacentHTML(
+      'beforeend',
+      `
+        <div id='${el.id}' class='documentFon'>
+            <img src="./img/documentLogo.png">
+            <div class="documentFon-mask">
+            <span>${el.title}</span>
+            </div>
+        </div>
+      `
+    );
+  });
+  new SimpleBar(folderBlock);
+  // Навешиваем обработчик клика на каждый документ
+  document.querySelectorAll('.documentFon').forEach(docEl => {
+    docEl.addEventListener('click', function(event) {
+      event.preventDefault();
+      localStorage.setItem('documentFolder', JSON.stringify({ documents: docs }));
+      localStorage.setItem('idDocumentFolder', docEl.id);
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = '../pdfPage/PdfHtml/pdfDoc.html';
+      }, 500);
+    });
+  });
+}
+
+// Поиск по документам
 function getFile(word, stations) {
   return stations.filter((s) => {
     const regex = new RegExp(word, 'gi');
@@ -41,7 +117,16 @@ function getFile(word, stations) {
   });
 }
 
-inputSearch.addEventListener('change', (event) => {});
+// Обработчик поиска
+inputSearch.addEventListener('input', (event) => {
+  const value = inputSearch.value;
+  const filtered = getFile(value, currentDocuments);
+  renderDocuments(filtered);
+});
+
+// Инициализация страницы
+renderDocuments(currentDocuments);
+
 keyboardBtns.forEach((button) => {
   button.addEventListener('click', (event) => {
     const init = document.querySelector('.init');
@@ -135,7 +220,6 @@ data.documents.forEach((el) => {
 });
 new SimpleBar(folderBlock);
 
-console.log(data); // Проверьте, что объект существует
 document.body.oncontextmenu = function (e) {
   return false;
 };
@@ -173,20 +257,6 @@ function animateKeyboard(open) {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.style.opacity = 1;
-});
-
-document.querySelector('.init').addEventListener('click', (event) => {
-  let link = event.target.closest('.documentFon');
-  if (!link) {
-    return;
-  } else {
-  }
-  event.preventDefault();
-  localStorage.setItem('idDocumentFolder', link.id);
-  document.body.style.opacity = 0;
-  setTimeout(() => {
-    window.location.href = '../pdfPage/PdfHtml/pdfDoc.html';
-  }, 500);
 });
 
 document.querySelector('.exit').addEventListener('click', (event) => {

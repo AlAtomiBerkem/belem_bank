@@ -1,4 +1,4 @@
-const data = JSON.parse(localStorage.getItem('documentFolder'));
+const data = documents;
 console.log(data.documents);
 const folderBlock = document.querySelector('.documentContainer');
 const folderTitle = document.createElement('div');
@@ -8,6 +8,21 @@ const cancelSearch = document.querySelector('.cancelSearch');
 const keyboardBtns = document.querySelectorAll('.btn');
 const deleteBtn = document.querySelector('.delete');
 const fonElement = document.querySelector('.fon');
+const fullTitle = [];
+let flagKeyboard = true;
+data.folderDocument.forEach((folder) => {
+  fullTitle.push(folder);
+  if (folder.subfolders) {
+    folder.subfolders.forEach((subfolder) => {
+      fullTitle.push(subfolder);
+      if (subfolder.documents) {
+        subfolder.documents.forEach((doc) => {
+          fullTitle.push(doc);
+        });
+      }
+    });
+  }
+});
 
 const para = document.createElement('span');
 const node = document.createTextNode(`${data.title}`);
@@ -17,20 +32,20 @@ element.appendChild(para);
 
 console.log('мы находимся на странице documentMethodical.html')
 
-const observer = new MutationObserver(() => {
-  const spans = document.querySelectorAll('.documentFon-mask > span');
+// const observer = new MutationObserver(() => {
+//   const spans = document.querySelectorAll('.documentFon-mask > span');
   
-  spans.forEach(span => {
-    const textLength = span.textContent.length;
-    const maxVisibleChars = 72;
+//   spans.forEach(span => {
+//     const textLength = span.textContent.length;
+//     const maxVisibleChars = 72;
     
-    if (textLength > maxVisibleChars) {
-      span.style.animation = 'scrollText 10s linear infinite alternate';
-    } else {
-      span.style.animation = 'none';
-    }
-  });
-});
+//     if (textLength > maxVisibleChars) {
+//       span.style.animation = 'scrollText 10s linear infinite alternate';
+//     } else {
+//       span.style.animation = 'none';
+//     }
+//   });
+// });
 
 observer.observe(document.body, { childList: true, subtree: true });
 
@@ -176,7 +191,7 @@ function animateKeyboard(open) {
 console.log(data);
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = 1;
+  // document.body.style.opacity = 1;
 });
 
 document.querySelector('.init').addEventListener('click', (event) => {

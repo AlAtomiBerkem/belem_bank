@@ -1,4 +1,4 @@
-const data = JSON.parse(localStorage.getItem('documents'));
+const data = documents;
 const folderBlock = document.querySelector('.documentContainer');
 const folderTitle = document.createElement('div');
 const container = document.querySelector('.container');
@@ -9,11 +9,18 @@ const deleteBtn = document.querySelector('.delete');
 const fonElement = document.querySelector('.fon');
 const fullTitle = [];
 let flagKeyboard = true;
-data.folderDocument.forEach((el) => {
-  fullTitle.push(el);
-  el.documents.forEach((element) => {
-    fullTitle.push(element);
-  });
+data.folderDocument.forEach((folder) => {
+  fullTitle.push(folder);
+  if (folder.subfolders) {
+    folder.subfolders.forEach((subfolder) => {
+      fullTitle.push(subfolder);
+      if (subfolder.documents) {
+        subfolder.documents.forEach((doc) => {
+          fullTitle.push(doc);
+        });
+      }
+    });
+  }
 });
 console.log('мы находимся на странице folderDocument.html')
 const observer = new MutationObserver(() => {
@@ -139,8 +146,8 @@ data.folderDocument.forEach((el) => {
   folderBlock.insertAdjacentHTML(
     'beforeend',
     `
-        <a id='${el.id}' class='documentFon' href="${el.source}">
-            <img src="${el.img}">
+        <a id='${el.id}' class='documentFon' href="../Subfolders.html?epoch=${encodeURIComponent(el.title)}">
+            <img src="./img/folder.png">
             <div class="documentFon-mask">
             <span>${el.title}</span>
             </div>
@@ -151,41 +158,16 @@ data.folderDocument.forEach((el) => {
 new SimpleBar(folderBlock);
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = 1;
+  // document.body.style.opacity = 1; // Больше не нужно
 });
 
 document.querySelector('.init').addEventListener('click', (event) => {
   let link = event.target.closest('.documentFon');
-  let linkTwo = event.target.closest('.documentFonSpan');
-  let linkThree = event.target.closest('.documentFonImg');
-  if (!link && !linkTwo && !linkThree) {
+  if (!link) {
     return;
   }
-
   event.preventDefault();
-  if (flagKeyboard === true) {
-    localStorage.setItem(
-      'documentFolder',
-      JSON.stringify(data.folderDocument[link.id])
-    );
-    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
-  } else if (flagKeyboard === false && !linkThree) {
-    localStorage.setItem(
-      'documentFolder',
-      JSON.stringify(data.folderDocument[linkTwo.id])
-    );
-    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
-  } else {
-    localStorage.setItem(
-      'documentFolder',
-      JSON.stringify(data.folderDocument[linkThree.id])
-    );
-    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
-  }
-
+  document.body.classList.add('fade-out');
   setTimeout(() => {
     window.location.href = link.href;
   }, 500);
@@ -193,7 +175,7 @@ document.querySelector('.init').addEventListener('click', (event) => {
 
 document.querySelector('.exit').addEventListener('click', (event) => {
   event.preventDefault();
-  document.body.style.opacity = 0;
+  document.body.classList.add('fade-out');
   setTimeout(() => {
     window.location.href = '../main/main.html';
   }, 500);
