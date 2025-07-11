@@ -147,7 +147,7 @@ data.folderDocument.forEach((el) => {
     'beforeend',
     `
         <a id='${el.id}' class='documentFon' href="../Subfolders.html?epoch=${encodeURIComponent(el.title)}">
-            <img src="${el.img}">
+            <img src="./img/folder.png">
             <div class="documentFon-mask">
             <span>${el.title}</span>
             </div>
