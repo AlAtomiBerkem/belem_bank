@@ -9,6 +9,7 @@ const deleteBtn = document.querySelector('.delete');
 const fonElement = document.querySelector('.fon');
 const fullTitle = [];
 let flagKeyboard = true;
+
 data.folderDocument.forEach((folder) => {
   fullTitle.push(folder);
   if (folder.subfolders) {
@@ -150,7 +151,6 @@ data.documents.forEach((el) => {
 });
 new SimpleBar(folderBlock);
 
-console.log(data); // Проверьте, что объект существует
 document.body.oncontextmenu = function (e) {
   return false;
 };

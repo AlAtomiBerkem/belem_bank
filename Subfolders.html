@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Темы эпохи</title>
+    <link rel="stylesheet" href="SubfoldersStyle.css" />
+    <link rel="stylesheet" href="folderDocument/folderDocument.css" />
+    <style>
+      html, body {
+        position: static !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: auto !important;
+      }
+      body {
+        opacity: 1 !important;
+        background-image: url('folderDocument/img/BackgroundWhite.png') !important;
+      }
+    </style>
+    <link rel="icon" href="data:;base64,=" />
+  </head>
+  <body data-barba="wrapper">
+    <main class="folderPageBackground" data-barba-namespace="home">
+      <div class="documentBackground">
+        <div class="documentContent">
+          <div class="documentTitle">
+            <div class="text-path" id="breadcrumb"></div>
+            <input class="search" id="search" type="text" placeholder="Поиск" />
+          </div>
+          <div class="line"></div>
+          <div data-simplebar class="init">
+            <div class="documentContainer" id="subfoldersContainer"></div>
+            <div id="subfoldersError" style="color: red; margin: 20px 0 0 20px; display: none;"></div>
+          </div>
+          <div class="transparency"></div>
+          <div class="footer">
+            <img class="rusTat" src="folderDocument/img/rustat.png" alt="" />
+            <div class="exit"></div>
+            <img class="logo" src="folderDocument/img/logo.png" />
+          </div>
+        </div>
+      </div>
+      <div class="fon"></div>
+    </main>
+    <script src="../dataDocuments.js"></script>
+    <script src="Subfolders.js"></script>
+  </body>
+</html> 

@@ -146,7 +146,7 @@ data.folderDocument.forEach((el) => {
   folderBlock.insertAdjacentHTML(
     'beforeend',
     `
-        <a id='${el.id}' class='documentFon' href="${el.source}">
+        <a id='${el.id}' class='documentFon' href="../Subfolders.html?epoch=${encodeURIComponent(el.title)}">
             <img src="${el.img}">
             <div class="documentFon-mask">
             <span>${el.title}</span>
@@ -163,36 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.querySelector('.init').addEventListener('click', (event) => {
   let link = event.target.closest('.documentFon');
-  let linkTwo = event.target.closest('.documentFonSpan');
-  let linkThree = event.target.closest('.documentFonImg');
-  if (!link && !linkTwo && !linkThree) {
+  if (!link) {
     return;
   }
-
   event.preventDefault();
-  if (flagKeyboard === true) {
-    localStorage.setItem(
-      'documentFolder',
-      JSON.stringify(data.folderDocument[link.id])
-    );
-    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
-  } else if (flagKeyboard === false && !linkThree) {
-    localStorage.setItem(
-      'documentFolder',
-      JSON.stringify(data.folderDocument[linkTwo.id])
-    );
-    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
-  } else {
-    localStorage.setItem(
-      'documentFolder',
-      JSON.stringify(data.folderDocument[linkThree.id])
-    );
-    localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
-  }
-
+  document.body.style.opacity = 0;
   setTimeout(() => {
     window.location.href = link.href;
   }, 500);
