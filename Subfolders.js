@@ -32,7 +32,7 @@ function renderSubfolders(subfolders) {
   subfolders.forEach(subfolder => {
     const a = document.createElement('a');
     a.className = 'documentFon';
-    a.href = `Documents.html?epoch=${encodeURIComponent(epoch)}&theme=${encodeURIComponent(subfolder.title)}`;
+    a.href = `Documents/Documents.html?epoch=${encodeURIComponent(epoch)}&theme=${encodeURIComponent(subfolder.title)}`;
     a.innerHTML = `
       <img src="folderDocument/img/folder.png">
       <div class="documentFon-mask">
