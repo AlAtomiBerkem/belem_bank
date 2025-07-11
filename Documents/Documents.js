@@ -50,6 +50,54 @@ para.appendChild(node);
 const element = document.querySelector('.text-path');
 element.appendChild(para);
 
+// Получаем параметры epoch и theme из URL
+function getQueryParam(name) {
+  const url = new URL(window.location.href);
+  return url.searchParams.get(name);
+}
+
+const epoch = getQueryParam('epoch');
+const theme = getQueryParam('theme');
+
+// Функция для поиска нужной эпохи и темы
+function getDocumentsForTheme(epoch, theme) {
+  if (!epoch || !theme) return [];
+  const folder = data.folderDocument.find(f => f.title === epoch);
+  if (!folder || !folder.subfolders) return [];
+  const subfolder = folder.subfolders.find(sf => sf.title === theme);
+  if (!subfolder || !subfolder.documents) return [];
+  return subfolder.documents;
+}
+
+// Обновляем хлебные крошки
+const breadcrumb = document.querySelector('.text-path');
+if (breadcrumb) {
+  breadcrumb.innerHTML = `<span>Банк</span> <span>/</span> <span>Документы</span> <span>/</span> <span>${epoch || ''}</span> <span>/</span> <span>${theme || ''}</span>`;
+}
+
+// Основной массив документов для отображения
+let currentDocuments = getDocumentsForTheme(epoch, theme);
+
+// Функция для рендера документов
+function renderDocuments(docs) {
+  folderBlock.innerHTML = '';
+  docs.forEach((el) => {
+    folderBlock.insertAdjacentHTML(
+      'beforeend',
+      `
+        <div id='${el.id}' class='documentFon'>
+            <img src="./img/documentLogo.png">
+            <div class="documentFon-mask">
+            <span>${el.title}</span>
+            </div>
+        </div>
+      `
+    );
+  });
+  new SimpleBar(folderBlock);
+}
+
+// Поиск по документам
 function getFile(word, stations) {
   return stations.filter((s) => {
     const regex = new RegExp(word, 'gi');
@@ -57,7 +105,16 @@ function getFile(word, stations) {
   });
 }
 
-inputSearch.addEventListener('change', (event) => {});
+// Обработчик поиска
+inputSearch.addEventListener('input', (event) => {
+  const value = inputSearch.value;
+  const filtered = getFile(value, currentDocuments);
+  renderDocuments(filtered);
+});
+
+// Инициализация страницы
+renderDocuments(currentDocuments);
+
 keyboardBtns.forEach((button) => {
   button.addEventListener('click', (event) => {
     const init = document.querySelector('.init');
