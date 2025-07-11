@@ -48,8 +48,10 @@ body {
 body {
   margin: 0;
   background-image: url('./img/BackgroundWhite.png');
-  opacity: 0;
   transition: opacity 0.5s;
+}
+body.fade-out {
+  opacity: 0;
 }
 #simplebar-track.simplebar-vertical {
 }
