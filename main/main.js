@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = 1;
+  // document.body.style.opacity = 1;
 });
 
 document.querySelector('.linkBtn').addEventListener('click', (e) => {
   e.preventDefault();
-  document.body.style.opacity = 0;
+  document.body.classList.add('fade-out');
   setTimeout(() => {
     window.location.href = '../folderDocument/folderDocument.html';
   }, 500);
 });
 document.querySelector('.linkBtn1').addEventListener('click', (e) => {
   e.preventDefault();
-  document.body.style.opacity = 0;
+  document.body.classList.add('fade-out');
   setTimeout(() => {
     window.location.href = '../folderMethodical/folderMethodical.html';
   }, 500);

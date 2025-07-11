@@ -158,7 +158,7 @@ data.folderDocument.forEach((el) => {
 new SimpleBar(folderBlock);
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = 1;
+  // document.body.style.opacity = 1; // Больше не нужно
 });
 
 document.querySelector('.init').addEventListener('click', (event) => {
@@ -167,7 +167,7 @@ document.querySelector('.init').addEventListener('click', (event) => {
     return;
   }
   event.preventDefault();
-  document.body.style.opacity = 0;
+  document.body.classList.add('fade-out');
   setTimeout(() => {
     window.location.href = link.href;
   }, 500);
@@ -175,7 +175,7 @@ document.querySelector('.init').addEventListener('click', (event) => {
 
 document.querySelector('.exit').addEventListener('click', (event) => {
   event.preventDefault();
-  document.body.style.opacity = 0;
+  document.body.classList.add('fade-out');
   setTimeout(() => {
     window.location.href = '../main/main.html';
   }, 500);

@@ -218,7 +218,7 @@
     padding-left: 20px;
     color: white;
     
-     animation: scrollText 10s linear infinite alternate;
+     /* animation: scrollText 10s linear infinite alternate; */ 
   }
   
   @keyframes scrollText {

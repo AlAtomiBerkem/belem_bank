@@ -76,8 +76,40 @@ function filterAndRender() {
   renderSubfolders(filtered);
 }
 
+
+const observer = new MutationObserver(() => {
+  const spans = document.querySelectorAll('.documentFon-mask > span');
+  
+  spans.forEach(span => {
+    const textLength = span.textContent.length;
+    const maxVisibleChars = 72;
+    console.log(textLength)
+    
+    if (textLength > maxVisibleChars) {
+      span.style.animation = 'scrollText 10s linear infinite alternate';
+      console.log('работает')
+    } else {
+      console.log('не работатет')
+      span.style.animation = 'none';
+    }
+  });
+});
+
+
 if (searchInput) {
   searchInput.addEventListener('input', filterAndRender);
 }
 
-document.addEventListener('DOMContentLoaded', filterAndRender); 
+document.addEventListener('DOMContentLoaded', function() {
+  filterAndRender();
+  const exitBtn = document.querySelector('.exit');
+  if (exitBtn) {
+    exitBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = './folderDocument/folderDocument.html';
+      }, 500);
+    });
+  }
+}); 

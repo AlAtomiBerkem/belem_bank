@@ -165,7 +165,7 @@ document.querySelectorAll('.documentFon').forEach((item) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = 1;
+  // document.body.style.opacity = 1;
 });
 
 document.querySelector('.init').addEventListener('click', (event) => {
@@ -183,21 +183,21 @@ document.querySelector('.init').addEventListener('click', (event) => {
       JSON.stringify(data.folderMethodical[link.id])
     );
     localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
+    document.body.classList.add('fade-out');
   } else if (flagKeyboard === false && !linkThree) {
     localStorage.setItem(
       'documentFolder',
       JSON.stringify(data.folderMethodical[linkTwo.id])
     );
     localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
+    document.body.classList.add('fade-out');
   } else {
     localStorage.setItem(
       'documentFolder',
       JSON.stringify(data.folderMethodical[linkThree.id])
     );
     localStorage.setItem('idDocumentFolder', JSON.stringify(link.id));
-    document.body.style.opacity = 0;
+    document.body.classList.add('fade-out');
   }
   setTimeout(() => {
     window.location.href = link.href;

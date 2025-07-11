@@ -32,20 +32,20 @@ element.appendChild(para);
 
 console.log('мы находимся на странице documentMethodical.html')
 
-const observer = new MutationObserver(() => {
-  const spans = document.querySelectorAll('.documentFon-mask > span');
+// const observer = new MutationObserver(() => {
+//   const spans = document.querySelectorAll('.documentFon-mask > span');
   
-  spans.forEach(span => {
-    const textLength = span.textContent.length;
-    const maxVisibleChars = 72;
+//   spans.forEach(span => {
+//     const textLength = span.textContent.length;
+//     const maxVisibleChars = 72;
     
-    if (textLength > maxVisibleChars) {
-      span.style.animation = 'scrollText 10s linear infinite alternate';
-    } else {
-      span.style.animation = 'none';
-    }
-  });
-});
+//     if (textLength > maxVisibleChars) {
+//       span.style.animation = 'scrollText 10s linear infinite alternate';
+//     } else {
+//       span.style.animation = 'none';
+//     }
+//   });
+// });
 
 observer.observe(document.body, { childList: true, subtree: true });
 
@@ -191,7 +191,7 @@ function animateKeyboard(open) {
 console.log(data);
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.opacity = 1;
+  // document.body.style.opacity = 1;
 });
 
 document.querySelector('.init').addEventListener('click', (event) => {
