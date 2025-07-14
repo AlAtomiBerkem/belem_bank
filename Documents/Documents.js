@@ -101,6 +101,22 @@ function renderDocuments(docs) {
       event.preventDefault();
       localStorage.setItem('documentFolder', JSON.stringify({ documents: docs }));
       localStorage.setItem('idDocumentFolder', docEl.id);
+      // Новый код: формируем путь из поля file или только из названия
+      const clickedDoc = docs.find(d => d.id == docEl.id);
+      let breadcrumbArr = ['Банк', 'Документы'];
+      if (clickedDoc && clickedDoc.file) {
+        const fileParts = clickedDoc.file.replace(/\\/g, '/').split('/');
+        breadcrumbArr = breadcrumbArr.concat(fileParts.slice(0, -1));
+        const fileName = fileParts[fileParts.length - 1].replace(/\.[^.]+$/, '');
+        breadcrumbArr.push(fileName);
+      } else if (clickedDoc && clickedDoc.title) {
+        breadcrumbArr.push(clickedDoc.title);
+        console.warn('Документ без поля file:', clickedDoc);
+      }
+      console.log('breadcrumbArr при клике:', breadcrumbArr);
+      localStorage.setItem('breadcrumb', JSON.stringify({
+        breadcrumbArr
+      }));
       document.body.style.opacity = 0;
       setTimeout(() => {
         window.location.href = '../pdfPage/PdfHtml/pdfDoc.html';
