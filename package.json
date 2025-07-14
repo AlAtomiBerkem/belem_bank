@@ -1,13 +1,5 @@
 {
   "dependencies": {
-    "@barba/core": "^2.10.3",
-    "http-server": "^14.1.1"
-  },
-  "devDependencies": {
-    "prettier": "^3.5.3"
-  },
-  "scripts": {
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "framer-motion": "^12.23.5"
   }
 }
