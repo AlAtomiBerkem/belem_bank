@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMarquee } from '../helpers/useMarquee.js'
 
-export const Folder = ({foldername = 'тут есть текст, очень длинный текст, ну очень длинный текст и опять же длинный текст '}) => {
+export const Folder = ({foldername = 'текст, ну очень длинный текст и опять же длинный текстолтттьт '}) => {
 
   const [containerRef, textRef] = useMarquee()
 
