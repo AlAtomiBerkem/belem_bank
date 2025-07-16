@@ -108,3 +108,25 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee-alternate {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-fade {
+  mask-image: 
+    linear-gradient(to left, black 99.5%, transparent 100%),
+    linear-gradient(to right, black 90%, transparent 98%);
+  mask-composite: intersect;
+  -webkit-mask-image: 
+    linear-gradient(to left, black 99.5%, transparent 100%),
+    linear-gradient(to right, black 90%, transparent 98%);
+  -webkit-mask-composite: source-in;
+}
+
