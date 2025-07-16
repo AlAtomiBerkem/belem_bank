@@ -6,7 +6,6 @@ export const FileItem = ({fileName = 'тут есть текст, очень д�
   const [containerRef, textRef] = useMarquee()
 
   return (
-    <div className='bg-black'>
       <section className="scale-[0.8] inline-flex items-center relative  ">
         <img src="/fileItem.png" alt={fileName} />
         <div
@@ -22,7 +21,6 @@ export const FileItem = ({fileName = 'тут есть текст, очень д�
           </span>
         </div>
       </section>
-    </div>
   )
 }
 
