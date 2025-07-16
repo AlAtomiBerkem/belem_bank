@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "normalize.css";
 
+@layer utilities {
+    .spin-slow {
+      animation: spin 2.5s linear infinite;
+    }
+  }
 
 @font-face {
   font-family: 'Nunito';
