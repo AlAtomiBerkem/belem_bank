@@ -130,3 +130,8 @@ body {
   -webkit-mask-composite: source-in;
 }
 
+.mask-fade-bottom {
+  mask-image: linear-gradient(to top, transparent 0%, black 50%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 50%);
+}
+

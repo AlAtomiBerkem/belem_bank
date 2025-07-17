@@ -6,14 +6,14 @@ export const Folder = ({foldername = 'текст, ну очень длинный
   const [containerRef, textRef] = useMarquee()
 
   return (
-      <section className="scale-[0.8] inline-flex items-center relative  ">
+      <section className="scale-[0.99] inline-flex items-center relative  pb-3">
         <img src="/folderItem.png" alt={foldername} />
         <div
-          className="marquee-fade overflow-hidden whitespace-nowrap max-w-[1024px] flex items-center ml-19 -mt-2 absolute inset-0"
+          className="marquee-fade overflow-hidden whitespace-nowrap max-w-[1024px] flex items-center ml-19 -mt-4 absolute inset-0"
           ref={containerRef}
         >
           <span
-            className="font-semibold text-white text-[35px] inline-block"
+            className="font-semibold text-white text-[28px] inline-block"
             ref={textRef}
             style={{ willChange: 'transform' }}
           >
