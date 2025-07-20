@@ -16,12 +16,12 @@ export const Breadcrumbs = () => {
   ];
 
   return (
-    <nav className="flex gap-2 text-white text-lg">
+    <nav className="flex gap-2 text-white text-lg text-nowrap text-white text-[28px]">
       {crumbs.map((crumb, idx) => (
         <span key={idx}>
           <span
             style={{ cursor: 'pointer', textDecoration: idx < crumbs.length - 1 ? 'underline' : 'none' }}
-            onClick={() => navigate(`/documents${crumb.path ? '/' + crumb.path : ''}`)}
+            onClick={() => navigate(`/documents${crumb.path ? '/' + crumb.path : ' '}`)}
           >
             {crumb.name}
           </span>

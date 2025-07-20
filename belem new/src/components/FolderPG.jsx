@@ -2,65 +2,56 @@ import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Folder } from './FolderItem.jsx'
 import FileItem from './FileItem.jsx'
-import CustomScrollbar from '../UI/CustomScrollbar.jsx'
+import AutoScrollbar from './AutoScrollbar.jsx'
 import Breadcrumbs from './Breadcrumbs.jsx'
 import SearchBar from './SearchBar.jsx'
 import '../index.css'
+import structure from '../library/structure.json'
 
-// Полная структура для одной эпохи (пример)
-const fs = {
-  '': ['1920-1930', '1940-1960', '1970-1980 ', '1990-2010', 'до 1920', 'с 2010'],
-  '1920-1930': [
-    { type: 'folder', name: '1. Дошкольное образование' },
-    { type: 'folder', name: '2. Среднее образование' },
-    { type: 'folder', name: '3. ССУЗЫ и ВУЗы' },
-    { type: 'folder', name: '4. Научные организации' },
-    { type: 'folder', name: '5. Доп. образование' },
-    { type: 'folder', name: '6. Управление образованием и административные регламенты' },
-  ],
-  '1920-1930/1. Дошкольное образование': [
-    { type: 'file', name: 'Декларация по дошкольному воспитанию.pdf' },
-    { type: 'file', name: 'О введении дифференцированной оплаты труда педагогического персонала детдомов и дошкольных учреждений.pdf' },
-    { type: 'file', name: 'О выполнении директив Правительства по использованию для школ и дошкольных учреждений конфискованных у кулачества домов..pdf' },
-    // ... другие файлы ...
-  ],
-  '1920-1930/2. Среднее образование': [
-    { type: 'file', name: 'Декрет Совета народных комиссаров РСФСР Об утверждении Положения о школах рабочих подростков, 07.04.1925г..pdf' },
-    { type: 'file', name: 'О введении бесспорного порядка взысканий платы за ученье в учебных и воспитательных учреждениях. 20 июля 1930.pdf' },
-    // ... другие файлы ...
-  ],
-  // ... остальные разделы и эпохи ...
+// Функция поиска папки/файлов по пути
+function findNodeByPath(tree, pathArr) {
+  if (!pathArr.length) return tree;
+  const [head, ...tail] = pathArr;
+  const next = (Array.isArray(tree) ? tree : tree.children).find(
+    node => node.name === head
+  );
+  if (!next) return [];
+  if (!tail.length) return next.children || [];
+  return findNodeByPath(next, tail);
 }
 
 export const FolderPG = () => {
   const { '*': splat } = useParams();
   const navigate = useNavigate();
-  const currentPath = splat || '';
-
-  let items = fs[currentPath] || [];
-  if (typeof items[0] === 'string') {
-    items = items.map(name => ({ type: 'folder', name }));
-  }
+  const pathArr = splat ? splat.split('/') : [];
+  const items = findNodeByPath(structure, pathArr);
 
   return (
     <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center justify-center'>
-      <div className='flex justify-start items-center -mt-17 mb-17 gap-x-[420px]'>
-        <Breadcrumbs />
+      <div className="flex justify-between items-center w-[980px] -mt-17 mb-17">
+        <div className="relative flex-1 min-w-0 mr-4">
+          <div className="overflow-hidden whitespace-nowrap">
+            <Breadcrumbs />
+          </div>
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-16" style={{background: 'linear-gradient(to right, transparent, #5E8A7E 99%)'}} />
+        </div>
         <SearchBar />
       </div>
-      <CustomScrollbar height={500} contentWidth={980} className="scroll-content-with">
-        {items.map((item, index) =>
-          item.type === 'folder' ? (
-            <div key={index} onClick={() => navigate(`/documents/${currentPath ? currentPath + '/' : ''}${item.name}`)} style={{ cursor: 'pointer' }}>
-              <Folder foldername={item.name} />
-            </div>
-          ) : (
-            <div key={index}>
-              <FileItem fileName={item.name} />
-            </div>
+      <AutoScrollbar itemCount={Array.isArray(items) ? items.length : 0} height={500} contentWidth={980} className="scroll-content-with flex flex-col items-center">
+        {({ compact }) =>
+          Array.isArray(items) && items.map((item, index) =>
+            item.type === 'folder' ? (
+              <div key={index} onClick={() => navigate(`/documents/${[...(splat ? pathArr : []), item.name].join('/')}`)} style={{ cursor: 'pointer' }}>
+                <Folder foldername={item.name} compact={compact} />
+              </div>
+            ) : (
+              <div key={index}>
+                <FileItem fileName={item.name} compact={compact} />
+              </div>
+            )
           )
-        )}
-      </CustomScrollbar>
+        }
+      </AutoScrollbar>
     </div>
   )
 }
