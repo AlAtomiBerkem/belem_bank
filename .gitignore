@@ -5,4 +5,5 @@ material
 /pdfPage/PdfHtml
 /pdfPage/PdfHtml/pdfDoc.html
 /pdfPage/PdfHtml/pdfDoc.html
-# library/
+library/
+belem new/src/library/
