@@ -8,7 +8,7 @@ export const Greeting = () => {
                 <button className="bg-transparent p-0 inline-flex items-center justify-center" onClick={() => navigate('/documents')}>
                     <img src="/btn_document.png" alt="Документ" className="h-20" />
                 </button>
-                <button className="bg-transparent p-0 inline-flex items-center justify-center">
+                <button className="bg-transparent p-0 inline-flex items-center justify-center" onClick={() => navigate('/materials')}>
                     <img src="/btn_posobie.png" alt="Пособие" className="h-20" />
                 </button>
             </div>

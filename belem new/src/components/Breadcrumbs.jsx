@@ -1,14 +1,14 @@
-import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export const Breadcrumbs = () => {
+export const Breadcrumbs = ({ rootName = 'Документы', rootPath = '/documents' }) => {
   const { '*': splat } = useParams();
   const navigate = useNavigate();
   const path = splat || '';
   const parts = path ? path.split('/') : [];
 
   const crumbs = [
-    { name: 'Документы', path: '' },
+    { name: rootName, path: '' },
     ...parts.map((part, idx) => ({
       name: part,
       path: parts.slice(0, idx + 1).join('/'),
@@ -16,12 +16,23 @@ export const Breadcrumbs = () => {
   ];
 
   return (
-    <nav className="flex gap-2 text-white text-lg text-nowrap text-white text-[28px] ">
+    <nav
+      className="flex gap-2 text-white text-[28px] min-w-0 overflow-hidden whitespace-nowrap"
+      style={{
+        WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent 100%)',
+        maskImage: 'linear-gradient(to right, black 80%, transparent 100%)'
+      }}
+    >
       {crumbs.map((crumb, idx) => (
         <span key={idx}>
           <span
-            style={{cursor: 'pointer'}}
-            onClick={() => navigate(`/documents${crumb.path ? '/' + crumb.path : ' '}`)}
+            onClick={() =>
+              navigate(
+                crumb.path
+                  ? `${rootPath}/${crumb.path}`
+                  : rootPath
+              )
+            }
           >
             {crumb.name}
           </span>
@@ -29,7 +40,7 @@ export const Breadcrumbs = () => {
         </span>
       ))}
     </nav>
-  )
-}
+  );
+};
 
-export default Breadcrumbs
+export default Breadcrumbs;

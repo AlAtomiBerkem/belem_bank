@@ -9,6 +9,8 @@ import Greeting from './components/Greeting.jsx'
 // @ts-ignore
 import FolderPG from './components/FolderPG.jsx'
 // @ts-ignore
+import MaterialsPG from './components/MaterialsPG.jsx'
+// @ts-ignore
 import { useInactivityRedirect } from './helpers/useInactivityRedirect.js'
 
 import './index.css'
@@ -25,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Greeting />} />
           <Route path="/documents/*" element={<FolderPG />} />
+          <Route path="/materials/*" element={<MaterialsPG />} />
         </Routes>
       </InactivityWrapper>
     </BrowserRouter>

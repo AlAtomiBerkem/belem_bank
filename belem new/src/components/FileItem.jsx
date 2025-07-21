@@ -6,7 +6,7 @@ export const FileItem = ({fileName, compact}) => {
   const [containerRef, textRef] = useMarquee()
 
   return (
-      <section className={`inline-flex items-center relative pb-3 ${compact ? 'scale-[0.8]' : ''}`}>
+      <section className={`inline-flex items-center relative ${compact ? '' : 'pb-4'} ${compact ? 'scale-[0.8]' : ''}`}>
         <img src="/fileItem.png" alt={fileName} />
         <div
           className="marquee-fade overflow-hidden whitespace-nowrap max-w-[1024px] pl-[2px] flex items-center ml-19 -mt-4 absolute inset-0"
