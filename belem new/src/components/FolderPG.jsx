@@ -28,14 +28,19 @@ export const FolderPG = () => {
 
   return (
     <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center justify-center'>
-      <div className="flex justify-between items-center w-[980px] -mt-17 mb-17">
-        <div className="relative flex-1 min-w-0 mr-4">
-          <div className="overflow-hidden whitespace-nowrap">
-            <Breadcrumbs />
+      <div
+        className="fixed left-1/2 z-50 -px-[20px]  top-[20px] "
+        style={{ top: '20px', transform: 'translateX(-50%)', width: '1015px' }}
+      >
+        <div className="flex justify-between items-center w-full">
+          <div className="relative flex-1 min-w-0 mr-4">
+            <div className="overflow-hidden whitespace-nowrap">
+              <Breadcrumbs />
+            </div>
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-16" style={{background: 'linear-gradient(to right, transparent, #5E8A7E 99%)'}} />
           </div>
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-16" style={{background: 'linear-gradient(to right, transparent, #5E8A7E 99%)'}} />
+          <SearchBar />
         </div>
-        <SearchBar />
       </div>
       <AutoScrollbar itemCount={Array.isArray(items) ? items.length : 0} height={500} contentWidth={980} className="scroll-content-with flex flex-col items-center">
         {({ compact }) =>
