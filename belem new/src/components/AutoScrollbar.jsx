@@ -1,7 +1,7 @@
 import React from 'react';
 import CustomScrollbar from '../UI/CustomScrollbar.jsx';
 
-const SCROLLBAR_THRESHOLD = 7; // Количество элементов, после которого нужен скроллбар
+const SCROLLBAR_THRESHOLD = 7; 
 
 const AutoScrollbar = ({ children, itemCount, height = 500, contentWidth = 980, ...props }) => {
   const compact = itemCount <= SCROLLBAR_THRESHOLD;

@@ -8,19 +8,27 @@ import Greeting from './components/Greeting.jsx'
 // import SearchBar from './components/SearchBar.jsx'
 // @ts-ignore
 import FolderPG from './components/FolderPG.jsx'
+// @ts-ignore
+import { useInactivityRedirect } from './helpers/useInactivityRedirect.js'
 
 import './index.css'
 
-function App() {
+function InactivityWrapper({ children }: { children: React.ReactNode }) {
+  useInactivityRedirect();
+  return children;
+}
 
+function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Greeting />} />
-        <Route path="/documents/*" element={<FolderPG />} />
-      </Routes>
+      <InactivityWrapper>
+        <Routes>
+          <Route path="/" element={<Greeting />} />
+          <Route path="/documents/*" element={<FolderPG />} />
+        </Routes>
+      </InactivityWrapper>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App
