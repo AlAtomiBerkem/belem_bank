@@ -7,6 +7,7 @@ import Breadcrumbs from './Breadcrumbs.jsx'
 import SearchBar from './SearchBar.jsx'
 import '../index.css'
 import structure from '../library/structure.json'
+import { useBackBtnLogick } from '../helpers/useBackBtnLogick.js';
 
 
 function findNodeByPath(tree, pathArr) {
@@ -35,6 +36,7 @@ export const FolderPG = () => {
   if (pathArr.length === 0) {
     items = sortEpochs(items);
   }
+  const goBack = useBackBtnLogick('/documents');
 
   return (
     <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center'>
@@ -47,6 +49,7 @@ export const FolderPG = () => {
         </div>
         <SearchBar />
       </div>
+      <button onClick={goBack} className='absolute bottom-4 left-20 w-[50px] h-[50px] bg-[url("/back-btn.png")] bg-cover bg-center bg-no-repeat'></button>
       <AutoScrollbar itemCount={Array.isArray(items) ? items.length : 0} height={500} contentWidth={980} className="scroll-content-with flex flex-col items-center">
         {({ compact }) =>
           Array.isArray(items) && items.map((item, index) =>

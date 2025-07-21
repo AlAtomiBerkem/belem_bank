@@ -7,6 +7,7 @@ import Breadcrumbs from './Breadcrumbs.jsx'
 import SearchBar from './SearchBar.jsx'
 import '../index.css'
 import structure from '../library/materials_structure.json'
+import { useBackBtnLogick } from '../helpers/useBackBtnLogick.js';
 
 function findNodeByPath(tree, pathArr) {
   if (!pathArr.length) return tree;
@@ -24,23 +25,20 @@ export const MaterialsPG = () => {
   const navigate = useNavigate();
   const pathArr = splat ? splat.split('/') : [];
   const items = findNodeByPath(structure, pathArr);
+  const goBack = useBackBtnLogick('/materials');
 
   return (
-    <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center justify-center'>
-      <div
-        className="fixed left-1/2 z-50"
-        style={{ top: '20px', transform: 'translateX(-50%)', width: '980px' }}
-      >
-        <div className="flex justify-between items-center w-full">
-          <div className="relative flex-1 min-w-0 mr-4">
-            <div className="overflow-hidden whitespace-nowrap">
-              <Breadcrumbs rootName="Методические пособия" rootPath="/materials" />
-            </div>
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-16" style={{background: 'linear-gradient(to right, transparent, #5E8A7E 99%)'}} />
+    <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center'>
+      <div className="flex justify-between items-center w-[1020px] mt-4 mb-10 gap-x-8">
+        <div className="relative flex-1 min-w-0 mr-4">
+          <div className="overflow-hidden whitespace-nowrap">
+            <Breadcrumbs rootName="Методические пособия" rootPath="/materials" />
           </div>
-          <SearchBar />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-16" style={{background: 'linear-gradient(to right, transparent, #5E8A7E 99%)'}} />
         </div>
+        <SearchBar />
       </div>
+      <button onClick={goBack} className='absolute bottom-4 left-20 w-[50px] h-[50px] bg-[url("/back-btn.png")] bg-cover bg-center bg-no-repeat'></button>
       <AutoScrollbar itemCount={Array.isArray(items) ? items.length : 0} height={500} contentWidth={980} className="scroll-content-with flex flex-col items-center">
         {({ compact }) => (
           <div className={`flex flex-col ${compact ? 'gap-y-1' : ''}`}>
