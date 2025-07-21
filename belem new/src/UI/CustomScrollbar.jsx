@@ -13,7 +13,7 @@ const CustomScrollbar = ({
   const [startY, setStartY] = useState(0);
   const [startThumbTop, setStartThumbTop] = useState(0);
   const [thumbTop, setThumbTop] = useState(0);
-
+  const [showFade, setShowFade] = useState(false);
 
   const syncThumb = () => {
     const scroll = scrollRef.current;
@@ -32,6 +32,20 @@ const CustomScrollbar = ({
     const ratio = newThumbTop / maxThumbTop;
     scroll.scrollTop = ratio * (scroll.scrollHeight - scroll.clientHeight);
   };
+
+  // Проверка на необходимость fade
+  const checkFade = () => {
+    const scroll = scrollRef.current;
+    if (!scroll) return;
+    setShowFade(scroll.scrollHeight > scroll.clientHeight + 1);
+  };
+
+  useEffect(() => {
+    checkFade();
+    const handleResize = () => checkFade();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const onMove = (e) => {
@@ -55,7 +69,10 @@ const CustomScrollbar = ({
     };
   }, [isDragging, startY, startThumbTop]);
 
-  const onScroll = () => syncThumb();
+  const onScroll = () => {
+    syncThumb();
+    checkFade();
+  };
 
   useEffect(() => {
     syncThumb();
@@ -99,18 +116,29 @@ const CustomScrollbar = ({
           }}
         />
       </div>
-      <div
-        ref={scrollRef}
-        className="overflow-auto"
-        style={{
-          height,
-          width: contentWidth,
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-        }}
-        onScroll={onScroll}
-      >
-        {children}
+      <div style={{ position: 'relative', height, width: contentWidth }}>
+        <div
+          ref={scrollRef}
+          className="overflow-auto"
+          style={{
+            height,
+            width: contentWidth,
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+          onScroll={onScroll}
+        >
+          {children}
+        </div>
+        {showFade && (
+          <div
+            className="pointer-events-none absolute left-0 bottom-0 w-full"
+            style={{
+              height: '50%',
+              background: 'linear-gradient(to top, #2F574C, transparent 99%)'
+            }}
+          />
+        )}
       </div>
     </div>
   );
