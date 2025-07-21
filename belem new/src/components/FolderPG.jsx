@@ -1,0 +1,69 @@
+import React from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Folder } from './FolderItem.jsx'
+import FileItem from './FileItem.jsx'
+import AutoScrollbar from './AutoScrollbar.jsx'
+import Breadcrumbs from './Breadcrumbs.jsx'
+import SearchBar from './SearchBar.jsx'
+import '../index.css'
+import structure from '../library/structure.json'
+
+
+function findNodeByPath(tree, pathArr) {
+  if (!pathArr.length) return tree;
+  const [head, ...tail] = pathArr;
+  const next = (Array.isArray(tree) ? tree : tree.children).find(
+    node => node.name === head
+  );
+  if (!next) return [];
+  if (!tail.length) return next.children || [];
+  return findNodeByPath(next, tail);
+}
+
+function sortEpochs(folders) {
+  if (!Array.isArray(folders)) return folders;
+  const first = folders.find(f => f.name === 'до 1920');
+  const rest = folders.filter(f => f.name !== 'до 1920');
+  return first ? [first, ...rest] : folders;
+}
+
+export const FolderPG = () => {
+  const { '*': splat } = useParams();
+  const navigate = useNavigate();
+  const pathArr = splat ? splat.split('/') : [];
+  let items = findNodeByPath(structure, pathArr);
+  if (pathArr.length === 0) {
+    items = sortEpochs(items);
+  }
+
+  return (
+    <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center justify-center'>
+      <div className="flex justify-between items-center w-[980px] -mt-17 mb-17">
+        <div className="relative flex-1 min-w-0 mr-4">
+          <div className="overflow-hidden whitespace-nowrap">
+            <Breadcrumbs rootName="Документы" rootPath="/documents" />
+          </div>
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-16" style={{background: 'linear-gradient(to right, transparent, #5E8A7E 99%)'}} />
+        </div>
+        <SearchBar />
+      </div>
+      <AutoScrollbar itemCount={Array.isArray(items) ? items.length : 0} height={500} contentWidth={980} className="scroll-content-with flex flex-col items-center">
+        {({ compact }) =>
+          Array.isArray(items) && items.map((item, index) =>
+            item.type === 'folder' ? (
+              <div key={index} onClick={() => navigate(`/documents/${[...(splat ? pathArr : []), item.name].join('/')}`)} style={{ cursor: 'pointer' }}>
+                <Folder foldername={item.name} compact={compact} />
+              </div>
+            ) : (
+              <div key={index}>
+                <FileItem fileName={item.name} compact={compact} />
+              </div>
+            )
+          )
+        }
+      </AutoScrollbar>
+    </div>
+  )
+}
+
+export default FolderPG
