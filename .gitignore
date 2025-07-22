@@ -1,9 +1,34 @@
-material
-/.idea
-/pdfDoc
-/pdfPage
-/pdfPage/PdfHtml
-/pdfPage/PdfHtml/pdfDoc.html
-/pdfPage/PdfHtml/pdfDoc.html
+# Зависимости
+/belem new/node_modules/
+node_modules/
+
+# Сборки
+/belem new/dist/
+/belem new/dist-ssr/
+
+# Логи
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Данные и библиотеки
+/belem new/src/library/
 library/
-belem new/src/library/
+material/
+pdfDoc/
+pdfPage/
+
+# Файлы ОС и редакторов
+.DS_Store
+*.local
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

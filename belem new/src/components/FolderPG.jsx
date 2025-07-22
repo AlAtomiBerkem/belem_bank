@@ -59,7 +59,9 @@ export const FolderPG = () => {
               </div>
             ) : (
               <div key={index}>
-                <FileItem fileName={item.name} compact={compact} />
+                <div onClick={() => navigate(`/pdf?file=${encodeURIComponent([...(splat ? pathArr : []), item.name].join('/'))}`)} style={{ cursor: 'pointer' }}>
+                  <FileItem fileName={item.name} compact={compact} />
+                </div>
               </div>
             )
           )

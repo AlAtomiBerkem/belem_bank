@@ -19,7 +19,7 @@ export const useMarquee = () => {
       if (text.scrollWidth > container.clientWidth + 1) {
         const distance = text.scrollWidth - container.clientWidth;
         text.style.setProperty('--marquee-distance', `${distance}px`);
-        const duration = 30; // секунд (было 14)
+        const duration = 30;
         text.style.animation = `marquee-alternate ${duration}s linear infinite alternate`;
       }
     });

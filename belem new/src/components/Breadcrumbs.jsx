@@ -16,29 +16,26 @@ export const Breadcrumbs = ({ rootName = 'Документы', rootPath = '/docu
   ];
 
   return (
-    <nav
-      className="flex gap-2 text-white text-[28px] min-w-0 overflow-hidden whitespace-nowrap"
-      style={{
-        WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent 100%)',
-        maskImage: 'linear-gradient(to right, black 80%, transparent 100%)'
-      }}
-    >
-      {crumbs.map((crumb, idx) => (
-        <span key={idx}>
-          <span
-            onClick={() =>
-              navigate(
-                crumb.path
-                  ? `${rootPath}/${crumb.path}`
-                  : rootPath
-              )
-            }
-          >
-            {crumb.name}
+    <nav className="flex gap-2 text-white text-[22px] min-w-0 overflow-x-auto whitespace-nowrap mb-2">
+      {crumbs.map((crumb, idx) => {
+        const isLast = idx === crumbs.length - 1;
+        return (
+          <span key={idx} className="flex items-center">
+            {idx > 0 && <span className="mx-1">/</span>}
+            {isLast ? (
+              <span className="font-bold" title={crumb.name}>{crumb.name}</span>
+            ) : (
+              <span
+                className="hover:underline cursor-pointer"
+                onClick={() => navigate(crumb.path ? `${rootPath}/${crumb.path}` : rootPath)}
+                title={crumb.name}
+              >
+                {crumb.name}
+              </span>
+            )}
           </span>
-          {idx < crumbs.length - 1 && <span> / </span>}
-        </span>
-      ))}
+        );
+      })}
     </nav>
   );
 };

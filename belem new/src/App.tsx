@@ -11,6 +11,8 @@ import FolderPG from './components/FolderPG.jsx'
 // @ts-ignore
 import MaterialsPG from './components/MaterialsPG.jsx'
 // @ts-ignore
+import PdfFile from './components/PdfFile.jsx'
+// @ts-ignore
 import { useInactivityRedirect } from './helpers/useInactivityRedirect.js'
 
 import './index.css'
@@ -28,6 +30,7 @@ function App() {
           <Route path="/" element={<Greeting />} />
           <Route path="/documents/*" element={<FolderPG />} />
           <Route path="/materials/*" element={<MaterialsPG />} />
+          <Route path="/pdf" element={<PdfFile />} />
         </Routes>
       </InactivityWrapper>
     </BrowserRouter>
