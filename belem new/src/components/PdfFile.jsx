@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react';
 import Breadcrumbs from './Breadcrumbs'
 import { useBackBtnLogick } from '../helpers/useBackBtnLogick'
 import AutoScrollbar from './AutoScrollbar'
-import { useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import marqueeFadeStyle from '../helpers/PdfFileMarqueeFade.js';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/build/pdf.mjs';
@@ -25,6 +24,21 @@ const PdfFile = () => {
     const fileName = file ? file.split('/').pop() : '';
     const folderPath = file ? file.split('/').slice(0, -1).join('/') : '';
 
+    const containerRef = useRef(null);
+    const [containerHeight, setContainerHeight] = useState(window.innerHeight - 170);
+
+    useEffect(() => {
+      const updateHeight = () => {
+        if (containerRef.current) {
+          const containerTop = containerRef.current.getBoundingClientRect().top;
+          setContainerHeight(window.innerHeight - containerTop);
+        }
+      };
+
+      updateHeight();
+      window.addEventListener('resize', updateHeight);
+      return () => window.removeEventListener('resize', updateHeight);
+    }, []);
 
 
     useEffect(() => {
@@ -56,8 +70,8 @@ const PdfFile = () => {
           )}
           <button onClick={goBack} className='absolute -top-2 right-30 scale-[0.76] w-[200px] h-[80px] bg-[url("/pdfBackBtn.png")] bg-center bg-no-repeat'></button>
         </div>
-        <div className="w-full flex flex-col items-center" style={{ maxWidth: 1080 }}>
-          <CustomScrollbar height={window.innerHeight - 100} contentWidth={1200} hideFade={true} scrollbarColor="#618D82">
+        <div className="w-full flex flex-col items-center mt-15" style={{ maxWidth: 1080 }} ref={containerRef}>
+          <CustomScrollbar height={containerHeight} contentWidth={990} hideFade={true} scrollbarColor="#618D82">
             <div id="pdf-viewer" className="w-full flex flex-col items-center" ref={pdfContainerRef}></div>
           </CustomScrollbar>
         </div>
