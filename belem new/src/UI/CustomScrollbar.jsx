@@ -7,6 +7,8 @@ const CustomScrollbar = ({
   className = '',
   style = {},
   contentWidth = 256,
+  hideFade = false,
+  scrollbarColor,
 }) => {
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -96,7 +98,7 @@ const CustomScrollbar = ({
           style={{
             width: 17,
             height: thumbHeight,
-            background: '#c7d7d3',
+            background: scrollbarColor || '#c7d7d3',
             borderRadius: 8,
             position: 'absolute',
             left: -6,
@@ -125,12 +127,14 @@ const CustomScrollbar = ({
             width: contentWidth,
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
+            overflowY: 'auto',
+            touchAction: 'pan-y',
           }}
           onScroll={onScroll}
         >
           {children}
         </div>
-        {showFade && (
+        {showFade && !hideFade && (
           <div
             className="pointer-events-none absolute left-0 bottom-0 w-full"
             style={{

@@ -9,5 +9,3 @@ greetingBackFon.png
 loading.png
 loadingFon.png
 whiteFon.png
-
-# Добавьте сюда картинки с этими именами по смыслу для корректной работы приложения. 
