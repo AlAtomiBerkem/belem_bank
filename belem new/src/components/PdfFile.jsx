@@ -41,12 +41,12 @@ const PdfFile = () => {
 
   return (
     <article className='relative min-h-screen w-full flex flex-col items-center'>
-        <div className='w-[1020px] min-h-[px] flex flex-col justify-center'>
-          <Breadcrumbs rootName="Документы" rootPath="/documents" path={folderPath} />
+        <div className='w-[1020px]  flex flex-col justify-center mt-2'>
+          <Breadcrumbs className='text-[28px]' rootName="Документы" rootPath="/documents" path={folderPath} />
           {fileName && (
-            <div className="mb-2 w-full flex justify-center">
+            <div className="mb-2 w-full flex justify-start">
               <span
-                className="text-white text-[28px]  text-center"
+                className="text-white text-[35px] text-start mt-4"
                 style={marqueeFadeStyle}
                 title={fileName}
               >
@@ -54,7 +54,7 @@ const PdfFile = () => {
               </span>
             </div>
           )}
-          <button onClick={goBack} className='absolute bottom-4 left-20 w-[50px] h-[50px] bg-[url("/bdfBackBtn.png")] bg-cover bg-center bg-no-repeat'></button>
+          <button onClick={goBack} className='absolute -top-2 right-30 scale-[0.76] w-[200px] h-[80px] bg-[url("/pdfBackBtn.png")] bg-center bg-no-repeat'></button>
         </div>
         <div className="w-full flex flex-col items-center" style={{ maxWidth: 1080 }}>
           <CustomScrollbar height={window.innerHeight - 100} contentWidth={1200} hideFade={true} scrollbarColor="#618D82">

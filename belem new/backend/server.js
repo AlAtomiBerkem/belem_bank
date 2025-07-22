@@ -17,7 +17,6 @@ app.get('/api/files/*', (req, res) => {
   const relPath = req.params[0];
   // Абсолютный путь к файлу
   const filePath = path.join(DOCUMENTS_DIR, relPath);
-  // Безопасность: не даём подняться выше DOCUMENTS_DIR
   if (!filePath.startsWith(DOCUMENTS_DIR)) {
     return res.status(403).send('Access denied');
   }
@@ -28,7 +27,6 @@ app.get('/api/files/*', (req, res) => {
   });
 });
 
-// 2. Стартуем сервер
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Backend server started on http://localhost:${PORT}`);

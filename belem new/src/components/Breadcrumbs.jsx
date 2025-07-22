@@ -16,17 +16,16 @@ export const Breadcrumbs = ({ rootName = 'Документы', rootPath = '/docu
   ];
 
   return (
-    <nav className="flex gap-2 text-white text-[22px] min-w-0 overflow-x-auto whitespace-nowrap mb-2">
+    <nav className="flex text-white text-[28px] whitespace-nowrap">
       {crumbs.map((crumb, idx) => {
         const isLast = idx === crumbs.length - 1;
         return (
           <span key={idx} className="flex items-center">
-            {idx > 0 && <span className="mx-1">/</span>}
+            {idx > 0 && <span className="mx-2">/</span>}
             {isLast ? (
-              <span className="font-bold" title={crumb.name}>{crumb.name}</span>
+              <span title={crumb.name}>{crumb.name}</span>
             ) : (
               <span
-                className="hover:underline cursor-pointer"
                 onClick={() => navigate(crumb.path ? `${rootPath}/${crumb.path}` : rootPath)}
                 title={crumb.name}
               >
