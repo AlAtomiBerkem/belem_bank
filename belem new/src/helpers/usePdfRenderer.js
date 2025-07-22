@@ -31,7 +31,7 @@ export function usePdfRenderer(pdfUrl, locationSearch) {
         await page.render({ canvasContext: context, viewport }).promise;
         const pageWrapper = document.createElement('div');
         pageWrapper.style.background = 'white';
-        pageWrapper.style.margin = '32px auto';
+        pageWrapper.style.margin = '5px auto';
         pageWrapper.style.boxShadow = '0 2px 16px 0 rgba(0,0,0,0.10)';
         pageWrapper.style.borderRadius = '8px';
         pageWrapper.style.display = 'flex';
