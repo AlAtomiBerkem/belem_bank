@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Breadcrumbs from './Breadcrumbs'
 import { useBackBtnLogick } from '../helpers/useBackBtnLogick'
 import AutoScrollbar from './AutoScrollbar'
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import marqueeFadeStyle from '../helpers/PdfFileMarqueeFade.js';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/build/pdf.mjs';
 import 'pdfjs-dist/web/pdf_viewer.css';
@@ -14,7 +14,7 @@ GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
 
 const PdfFile = () => {
 
-    const goBack = useBackBtnLogick('/documents');
+    const navigate = useNavigate();
     const location = useLocation();
     const pdfUrl = getPdfUrlFromQuery();
 
@@ -23,6 +23,18 @@ const PdfFile = () => {
     const file = params.get('file');
     const fileName = file ? file.split('/').pop() : '';
     const folderPath = file ? file.split('/').slice(0, -1).join('/') : '';
+
+    // Функция для перехода на уровень выше
+    const goBack = () => {
+      if (!folderPath) {
+        // Если нет пути (файл в корне) - идем в /documents
+        navigate('/documents');
+      } else {
+        // Иначе идем на уровень выше
+        const parentPath = folderPath.split('/').slice(0, -1).join('/');
+        navigate(parentPath ? `/documents/${parentPath}` : '/documents');
+      }
+    };
 
     const containerRef = useRef(null);
     const [containerHeight, setContainerHeight] = useState(window.innerHeight - 170);
@@ -56,7 +68,7 @@ const PdfFile = () => {
   return (
     <article className='relative min-h-screen w-full flex flex-col items-center'>
         <div className='w-[1020px]  flex flex-col justify-center mt-2'>
-          <Breadcrumbs className='text-[28px]' rootName="Документы" rootPath="/documents" path={folderPath} />
+          <Breadcrumbs className='text-[28px]' rootName="Документы" rootPath="/documents" />
           {fileName && (
             <div className="mb-2 w-full flex justify-start">
               <span
