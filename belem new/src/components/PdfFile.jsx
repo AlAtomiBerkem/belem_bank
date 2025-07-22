@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Breadcrumbs from './Breadcrumbs'
-import { useBackBtnLogick } from '../helpers/useBackBtnLogick'
-import AutoScrollbar from './AutoScrollbar'
+// import { useBackBtnLogick } from '../helpers/useBackBtnLogick'
+// import AutoScrollbar from './AutoScrollbar'
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import marqueeFadeStyle from '../helpers/PdfFileMarqueeFade.js';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/build/pdf.mjs';
@@ -68,7 +68,7 @@ const PdfFile = () => {
   return (
     <article className='relative min-h-screen w-full flex flex-col items-center'>
         <div className='w-[1020px]  flex flex-col justify-center mt-2'>
-          <Breadcrumbs className='text-[28px]' rootName="Документы" rootPath="/documents" />
+          <Breadcrumbs className='text-[28px]'  rootName="Документы" rootPath="/documents"/>
           {fileName && (
             <div className="mb-2 w-full flex justify-start">
               <span

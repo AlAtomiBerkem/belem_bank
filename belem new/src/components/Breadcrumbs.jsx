@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import marqueeFadeStyle from '../helpers/PdfFileMarqueeFade.js';
 
 export const Breadcrumbs = ({ rootName = 'Документы', rootPath = '/documents' }) => {
   const { '*': splat } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Получаем путь либо из splat, либо из query параметра
+
   let path = splat || '';
   
   // Если мы на странице PDF (путь /pdf)
@@ -31,7 +32,7 @@ export const Breadcrumbs = ({ rootName = 'Документы', rootPath = '/docu
   ];
 
   return (
-    <nav className="flex text-white text-[28px] whitespace-nowrap">
+    <nav className="flex text-white text-[28px] whitespace-nowrap max-w-[840px] marquee-fade">
       {crumbs.map((crumb, idx) => {
         const isLast = idx === crumbs.length - 1;
         return (
