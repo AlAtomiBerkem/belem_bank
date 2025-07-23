@@ -10,12 +10,10 @@ export const Breadcrumbs = ({ rootName = 'Документы', rootPath = '/docu
 
   let path = splat || '';
   
-  // Если мы на странице PDF (путь /pdf)
   if (location.pathname === '/pdf') {
     const params = new URLSearchParams(location.search);
     const file = params.get('file');
     if (file) {
-      // Берем путь до папки, без имени файла
       path = file.split('/').slice(0, -1).join('/');
     }
   }
