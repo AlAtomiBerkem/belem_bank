@@ -2,8 +2,10 @@ export function getPdfUrlFromQuery() {
   const search = window.location.search;
   const params = new URLSearchParams(search);
   const file = params.get('file');
+  const type = params.get('type') || 'documents'; // по умолчанию documents
+  
   if (!file) return null;
-  return `http://localhost:3001/api/files/${file}`;
+  return `http://localhost:3001/api/files/${type}/${file}`;
 }
 
 export function getFileBreadcrumbs() {
