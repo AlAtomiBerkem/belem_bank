@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import { useSpring, animated } from '@react-spring/web';
 
 const Keyboard = ({ onInput, onClose }) => {
   const [isUpperCase, setIsUpperCase] = useState(false);
   
+  const overlayAnimation = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 500 }
+  });
+
   const layout = [
     ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
     ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х'],
@@ -31,7 +38,7 @@ const Keyboard = ({ onInput, onClose }) => {
   };
 
   return (
-    <div className="keyboard-overlay">
+    <animated.div className="keyboard-overlay" style={overlayAnimation}>
       <div className="keyboard">
         {layout.map((row, rowIndex) => (
           <div key={rowIndex} className={`row ${rowIndex === 0 ? 'rowStart' : ''} ${rowIndex === layout.length - 1 ? 'rowend' : ''}`}>
@@ -63,7 +70,7 @@ const Keyboard = ({ onInput, onClose }) => {
           </button>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 };
 
