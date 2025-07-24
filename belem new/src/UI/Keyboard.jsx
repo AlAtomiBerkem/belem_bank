@@ -38,18 +38,18 @@ const Keyboard = ({ onInput, onClose }) => {
   };
 
   return (
-    <animated.div className="fixed inset-0 bg-black/25 flex justify-center items-end z-[9998]" style={overlayAnimation}>
-      <div className="relative flex flex-col justify-center items-center w-[1139px] h-[501px] bg-[#30574D] text-[50px] font-normal leading-[41.14px] text-left font-nunito rounded-[38px] border-[5px] border-[#F4D3AD] scale-80 mb-5 z-[9999]">
+    <animated.div className="fixed inset-0 bg-black/20 flex justify-center items-end z-[9998]" style={overlayAnimation}>
+      <div className="relative flex flex-col justify-center items-center w-[1139px] h-[501px] bg-[#30574D] text-[50px] font-normal leading-[41.14px] text-left font-nunito rounded-[38px] border-[5px] border-[#F4D3AD] scale-80 -mb-8 z-[9999]">
         {layout.map((row, rowIndex) => (
           <div key={rowIndex} className={`flex mb-2 gap-x-[6px]  ${rowIndex === 0 ? 'mt-2.5' : ''} ${rowIndex === layout.length - 1 ? 'mb-5' : ''}`}>
             {rowIndex === 0 && (
               <button className="flex items-center justify-center bg-[#618D82] text-white w-[95px] h-[86px] rounded-[18px] text-[40px] pb-2 font-semibold leading-[41.14px] font-nunito border-none active:bg-[#f3d2ab]" onClick={onClose}>
-                ↓
+                <img src="./keybord/esc.png" alt="Down" className="w-full h-full scale-[0.5] object-contain p-[15px]" />
               </button>
             )}
             {rowIndex === layout.length - 1 && (
               <button className="bg-[#618D82] text-white w-[95px] h-[86px] rounded-[18px] text-[50px] border-none" onClick={handleShift}>
-                <img src="/keybord/Shift.png" alt="Shift" className="w-full h-full object-contain p-[15px]" />
+                <img src="./keybord/Shift.png" alt="Shift" className="w-full h-full scale-[0.6] object-contain p-[15px]" />
               </button>
             )}
             {row.map((char, charIndex) => (
@@ -63,7 +63,7 @@ const Keyboard = ({ onInput, onClose }) => {
             ))}
             {rowIndex === layout.length - 1 && (
               <button className="bg-[#618D82] text-white w-[95px] h-[86px] rounded-[18px] text-[50px] border-none" onClick={handleDelete}>
-                ←
+                <img src="./keybord/delete.png" alt="Delete" className="w-full h-full scale-[0.6] object-contain p-[15px]" />
               </button>
             )}
           </div>

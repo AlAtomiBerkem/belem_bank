@@ -26,7 +26,7 @@ function AnimatedRoutes() {
     from: { 
       opacity: 0,
       transform: 'translate3d(0, 0, 0)',
-      bgOpacity: 0
+      bgOpacity: 1
     },
     enter: { 
       opacity: 1,
@@ -64,15 +64,15 @@ function AnimatedRoutes() {
       ))}
       
       {/* Основной контент */}
-      {transitions(({ opacity, transform }, item) => (
+      {transitions(({ opacity, transform, bgOpacity }, item) => (
         <animated.div
           style={{
             position: 'absolute',
             width: '100%',
             height: '100%',
-            opacity,
             transform,
-            zIndex: 2
+            zIndex: 2,
+            opacity: opacity,
           }}
         >
           <Routes location={item}>
