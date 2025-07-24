@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 import Keyboard from '../UI/Keyboard';
-import '../UI/Keyboard.css';
 
-export const SearchBar = () => {
+export const SearchBar = ({ onSearch }) => {
   const [showKeyboard, setShowKeyboard] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
@@ -13,6 +12,10 @@ export const SearchBar = () => {
     leave: { bottom: '-600px' },
     config: { tension: 280, friction: 24 }
   });
+
+  useEffect(() => {
+    onSearch?.(searchValue.toLowerCase());
+  }, [searchValue, onSearch]);
 
   const handleInput = (char) => {
     if (char === 'BACKSPACE') {
@@ -30,14 +33,19 @@ export const SearchBar = () => {
     setShowKeyboard(false);
   };
 
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <div className="relative">
       <input
         type="text"
         placeholder="Поиск"
         value={searchValue}
+        onChange={handleInputChange}
         onFocus={handleFocus}
-        className="w-[307px] h-[41px] rounded-[99px] border-[4px] border-[#C7D7D6] pl-4 text-white text-[48px] font-normal focus:outline-none placeholder-white placeholder-opacity-90 placeholder:text-[22px] placeholder:pl-2 placeholder:translate-y-[3px]"
+        className="w-[307px] h-[41px] rounded-[99px] border-[4px] border-[#C7D7D6] pl-4 text-white text-[48px] font-normal focus:outline-none placeholder-white placeholder-opacity-90 placeholder:text-[22px] placeholder:pl-2 placeholder:translate-y-[3px] bg-transparent"
       />
       {transitions((style, item) =>
         item && (
