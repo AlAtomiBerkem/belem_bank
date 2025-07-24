@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTransition, animated } from '@react-spring/web';
 import Keyboard from '../UI/Keyboard';
-import '../UI/Keyboard.css';
 
 export const SearchBar = () => {
   const [showKeyboard, setShowKeyboard] = useState(false);
