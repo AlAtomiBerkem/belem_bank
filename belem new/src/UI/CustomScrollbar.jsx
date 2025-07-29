@@ -81,7 +81,7 @@ const CustomScrollbar = ({
   }, []);
 
   return (
-    <div className={` scale-[1.3] mt-15 flex flex-row ${className}`} style={style}>
+    <div className={` scale-[1.4] mt-18 flex flex-row ${className}`} style={style}>
       <div
         style={{
           width: 5,
