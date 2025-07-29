@@ -4,7 +4,7 @@ export const Greeting = () => {
     const navigate = useNavigate();
     return (
         <main className="relative h-screen w-screen bg-[url('/greetingBackFon.png')] bg-cover bg-center bg-fixed">
-            <div className="absolute bottom-42 left-0 w-full flex justify-center gap-20">
+            <div className="absolute bottom-42 left-0 w-full flex justify-center gap-30">
                 <button className="bg-transparent p-0 inline-flex items-center justify-center" onClick={() => navigate('/documents')}>
                     <img src="/btn_document.png" alt="Документ" className="h-20" />
                 </button>
