@@ -67,7 +67,7 @@ const PdfFile = () => {
 
   return (
     <article className='relative min-h-screen w-full flex flex-col items-center'>
-        <div className='w-[1432px]  flex flex-col justify-center mt-9 mb-28'>
+        <div className='w-[1432px]  flex flex-col justify-center mt-9 mb-34'>
           <Breadcrumbs className='text-[28px]'  rootName="Документы" rootPath="/documents"/>
           {fileName && (
             <div className="mb-2 w-full flex justify-start">
@@ -80,7 +80,7 @@ const PdfFile = () => {
               </span>
             </div>
           )}
-          <button onClick={goBack} className='absolute mt-4 right-30 scale-[0.76] w-[200px] h-[80px] bg-[url("/pdfBackBtn.png")] bg-center bg-no-repeat'></button>
+          <button onClick={goBack} className='absolute mt-4 right-30 scale-[0.78] w-[200px] h-[80px] bg-[url("/pdfBackBtn.png")] bg-center bg-no-repeat'></button>
         </div>
         <div className="w-full flex flex-col items-center mt-15" style={{ maxWidth: 1080 }} ref={containerRef}>
           <CustomScrollbar height={containerHeight} contentWidth={990} hideFade={true} scrollbarColor="#618D82">
