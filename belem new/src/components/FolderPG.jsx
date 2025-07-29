@@ -51,7 +51,7 @@ export const FolderPG = () => {
 
   return (
     <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center'>
-      <div className="flex justify-between items-center w-[1442px] mt-5 mb-22">
+      <div className="flex justify-between items-center w-[1442px] mt-9 mb-22">
         <div className="relative flex-1 min-w-0 mr-4">
           <div className="overflow-hidden whitespace-nowrap">
             <Breadcrumbs rootName="Документы" rootPath="/documents" />
