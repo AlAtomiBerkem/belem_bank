@@ -139,7 +139,11 @@ const CustomScrollbar = ({
             className="pointer-events-none absolute left-0 bottom-0 w-full"
             style={{
               height: '50%',
-              background: 'linear-gradient(to top, #2F574C, transparent 99%)'
+              background: 'linear-gradient(to top, #365D52, transparent 59%)',
+              width: '101%',
+              height: '101%',
+              left: -3,
+              top: 2,
             }}
           />
         )}

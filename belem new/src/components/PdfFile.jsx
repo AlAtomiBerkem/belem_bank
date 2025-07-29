@@ -67,7 +67,7 @@ const PdfFile = () => {
 
   return (
     <article className='relative min-h-screen w-full flex flex-col items-center'>
-        <div className='w-[1432px]  flex flex-col justify-center mt-9 mb-25'>
+        <div className='w-[1432px]  flex flex-col justify-center mt-9 mb-28'>
           <Breadcrumbs className='text-[28px]'  rootName="Документы" rootPath="/documents"/>
           {fileName && (
             <div className="mb-2 w-full flex justify-start">
