@@ -43,7 +43,7 @@ export const MaterialsPG = () => {
 
   return (
     <div className='relative h-screen w-screen bg-[url("/global-bg.png")] bg-cover bg-center bg-fixed flex flex-col items-center'>
-      <div className="flex justify-between items-center w-[1420px] mt-1 mb-25 gap-x-8">
+      <div className="flex justify-between items-center w-[1420px] mt-3 mb-22 gap-x-8">
         <div className="relative flex-1 min-w-0 mr-4">
           <div className="overflow-hidden whitespace-nowrap">
             <Breadcrumbs rootName="Методические пособия" rootPath="/materials" />
