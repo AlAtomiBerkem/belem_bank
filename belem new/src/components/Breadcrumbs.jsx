@@ -38,7 +38,7 @@ export const Breadcrumbs = ({ rootName = 'Документы', rootPath = '/docu
   ];
 
   return (
-    <nav className="flex text-white text-[28px] whitespace-nowrap max-w-[840px] marquee-fade">
+    <nav className="flex text-white text-[34px] whitespace-nowrap max-w-[840px] marquee-fade">
       {crumbs.map((crumb, idx) => {
         const isLast = idx === crumbs.length - 1;
         return (
