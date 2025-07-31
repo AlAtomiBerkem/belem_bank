@@ -43,7 +43,9 @@ const PdfFile = () => {
       const updateHeight = () => {
         if (containerRef.current) {
           const containerTop = containerRef.current.getBoundingClientRect().top;
-          setContainerHeight(window.innerHeight - containerTop);
+          // Уменьшаем высоту на 30% только для PDF
+          const calculatedHeight = window.innerHeight - containerTop;
+          setContainerHeight(calculatedHeight * 0.7);
         }
       };
 

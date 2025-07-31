@@ -132,7 +132,7 @@ const CustomScrollbar = ({
           }}
           onScroll={onScroll}
         >
-          <div style={{ paddingBottom: '150px' }}>
+          <div style={{ paddingBottom: '180px' }}>
             {children}
           </div>
         </div>
