@@ -27,6 +27,18 @@ function sortEpochs(folders) {
   return first ? [first, ...rest] : folders;
 }
 
+function collectFilesRecursively(nodes, basePathArr, acc = []) {
+  if (!Array.isArray(nodes)) return acc;
+  nodes.forEach(node => {
+    if (node.type === 'folder' && Array.isArray(node.children)) {
+      collectFilesRecursively(node.children, [...basePathArr, node.name], acc);
+    } else if (node.type !== 'folder') {
+      acc.push({ name: node.name, pathArr: [...basePathArr, node.name] });
+    }
+  });
+  return acc;
+}
+
 export const FolderPG = () => {
   const { '*': splat } = useParams();
   const navigate = useNavigate();
@@ -34,6 +46,17 @@ export const FolderPG = () => {
   const pathArr = splat ? splat.split('/') : [];
   const items = findNodeByPath(structure, pathArr);
   const sortedItems = pathArr.length === 0 ? sortEpochs(items) : items;
+
+  const allFilesUnderCurrent = useMemo(() => {
+    return collectFilesRecursively(items, pathArr, []);
+  }, [items, pathArr]);
+
+  const filteredFlatFiles = useMemo(() => {
+    if (!searchQuery) return [];
+    return allFilesUnderCurrent.filter(file =>
+      file.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [allFilesUnderCurrent, searchQuery]);
 
   const filteredItems = useMemo(() => {
     if (!searchQuery || !Array.isArray(sortedItems)) return sortedItems;
@@ -61,21 +84,29 @@ export const FolderPG = () => {
         <SearchBar onSearch={handleSearch} />
       </div>
       <button onClick={goBack} className='absolute bottom-4 left-20 w-[50px] h-[50px] bg-[url("/back-btn.png")] bg-cover bg-center bg-no-repeat'></button>
-      <AutoScrollbar itemCount={Array.isArray(filteredItems) ? filteredItems.length : 0} height={500} contentWidth={980} className="scroll-content-with flex flex-col items-center">
+      <AutoScrollbar itemCount={searchQuery ? filteredFlatFiles.length : (Array.isArray(filteredItems) ? filteredItems.length : 0)} height={500} contentWidth={980} className="scroll-content-with flex flex-col items-center">
         {({ compact }) =>
-          Array.isArray(filteredItems) && filteredItems.map((item, index) =>
-            item.type === 'folder' ? (
-              <div key={index} onClick={() => navigate(`/documents/${[...(splat ? pathArr : []), item.name].join('/')}`)} style={{ cursor: 'pointer' }}>
-                <Folder foldername={item.name} compact={compact} />
-              </div>
-            ) : (
-              <div key={index}>
-                <div onClick={() => navigate(`/pdf?file=${encodeURIComponent([...(splat ? pathArr : []), item.name].join('/'))}&type=documents`)}>
-                  <FileItem fileName={item.name} compact={compact} />
+          searchQuery
+            ? filteredFlatFiles.map((file, index) => (
+                <div key={index}>
+                  <div onClick={() => navigate(`/pdf?file=${encodeURIComponent(file.pathArr.join('/'))}&type=documents`)}>
+                    <FileItem fileName={file.name} compact={compact} />
+                  </div>
                 </div>
-              </div>
-            )
-          )
+              ))
+            : Array.isArray(filteredItems) && filteredItems.map((item, index) =>
+                item.type === 'folder' ? (
+                  <div key={index} onClick={() => navigate(`/documents/${[...(splat ? pathArr : []), item.name].join('/')}`)} style={{ cursor: 'pointer' }}>
+                    <Folder foldername={item.name} compact={compact} />
+                  </div>
+                ) : (
+                  <div key={index}>
+                    <div onClick={() => navigate(`/pdf?file=${encodeURIComponent([...(splat ? pathArr : []), item.name].join('/'))}&type=documents`)}>
+                      <FileItem fileName={item.name} compact={compact} />
+                    </div>
+                  </div>
+                )
+              )
         }
       </AutoScrollbar>
     </div>
